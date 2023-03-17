@@ -16,7 +16,7 @@ const cx = classNames.bind(styles);
 function Home() {
   return (
     <>
-      <Header />
+      
       <Row style={{ margin: "0px" }}>
         <Col sm={2}>
           <Nav />
@@ -24,6 +24,7 @@ function Home() {
 
         <Col sm={10}>
           <div className={cx("content")}>
+            <Header />
             <Slider/>
             <Detail_post/>
             <List_post/>

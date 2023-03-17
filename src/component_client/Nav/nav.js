@@ -1,6 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "./Nav.module.scss";
 import {
+  faDollarSign,
+
   faGauge,
   faChevronDown,
   faLock,
@@ -8,11 +10,11 @@ import {
   faClockRotateLeft,
   faUsers,
   faCreditCard,
-  faClipboard,
   faRug,
   faBell,
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
+import { faClipboard } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import ReactDOM from "react-dom/client";
 
@@ -56,7 +58,7 @@ function Nav() {
         <div className={cx("nav-top-name")}>CHIPPISOFT </div>
       </div>
       <div className={cx("nav-list")}>
-        <li
+        {/* <li
           className={cx("nav-item", "fade")}
           id="dashboard"
           onClick={handleClick}
@@ -65,17 +67,8 @@ function Nav() {
             <FontAwesomeIcon icon={faGauge} className={cx("nav-icon")} />
             <div className={cx("nav-item-name")}>Bảng điều khiển</div>
           </div>
-        </li>
-        <li
-          className={cx("nav-item", "fade")}
-          id="sercurity"
-          onClick={handleClick}
-        >
-          <div className={cx("item-wrap")}>
-            <FontAwesomeIcon icon={faLock} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Bảo mật</div>
-          </div>
-        </li>
+        </li> */}
+
         <li className={cx("nav-item", "fade")} id="product">
           <div className={cx("item-wrap", "nav-item-down")}>
             <div className={cx("nav-item-left")}>
@@ -101,31 +94,56 @@ function Nav() {
             id="type"
             onClick={handleClick}
           >
-            <div className={cx("sub-item")}>Chuyên mục</div>
+            <div className={cx("sub-item")}>Thiết kế</div>
           </li>
           <li
             className={cx("sub-item-wrap", "nav-item", "fade")}
             id="list"
             onClick={handleClick}
           >
-            <div className={cx("sub-item")}>Danh sách sản phẩm</div>
+            <div className={cx("sub-item")}>Tool facebook</div>
           </li>
           <li
             className={cx("sub-item-wrap", "nav-item", "fade")}
             id="order"
             onClick={handleClick}
           >
-            <div className={cx("sub-item")}>Đơn hàng</div>
+            <div className={cx("sub-item")}>Tool zalo</div>
+          </li>
+          <li
+            className={cx("sub-item-wrap", "nav-item", "fade")}
+            id="order"
+            onClick={handleClick}
+          >
+            <div className={cx("sub-item")}>Giải capcha</div>
+          </li>
+          <li
+            className={cx("sub-item-wrap", "nav-item", "fade")}
+            id="order"
+            onClick={handleClick}
+          >
+            <div className={cx("sub-item")}>Tool twitter</div>
           </li>
         </div>
+        <li
+          className={cx("nav-item", "fade")}
+          id="sercurity"
+          onClick={handleClick}
+        >
+          <div className={cx("item-wrap")}>
+            <FontAwesomeIcon icon={faDollarSign} className={cx("nav-icon")} />
+            <div className={cx("nav-item-name")}>Nạp tiền</div>
+          </div>
+        </li>
+
         <li className={cx("nav-item", "fade")} id="history">
           <div className={cx("item-wrap", "nav-item-down")}>
             <div className={cx("nav-item-left")}>
               <FontAwesomeIcon
-                icon={faClockRotateLeft}
+                icon={faClipboard}
                 className={cx("nav-icon")}
               />
-              <div className={cx("nav-item-name")}>Lịch sử</div>
+              <div className={cx("nav-item-name")}>Bài viết</div>
             </div>
             <div>
               <FontAwesomeIcon
@@ -143,14 +161,21 @@ function Nav() {
             id="type"
             onClick={handleClick}
           >
-            <div className={cx("sub-item")}>Nhật ký hoạt động</div>
+            <div className={cx("sub-item")}>Thiết kế</div>
           </li>
           <li
             className={cx("sub-item-wrap", "nav-item", "fade")}
             id="list"
             onClick={handleClick}
           >
-            <div className={cx("sub-item")}>Biến động số dư</div>
+            <div className={cx("sub-item")}>Game</div>
+          </li>
+          <li
+            className={cx("sub-item-wrap", "nav-item", "fade")}
+            id="list"
+            onClick={handleClick}
+          >
+            <div className={cx("sub-item")}>Văn phòng</div>
           </li>
         </div>
         <li
@@ -160,10 +185,10 @@ function Nav() {
         >
           <div className={cx("item-wrap")}>
             <FontAwesomeIcon icon={faUsers} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Thành viên</div>
+            <div className={cx("nav-item-name")}>Liên hệ</div>
           </div>
         </li>
-        <li className={cx("nav-item", "fade")} id="pay" onClick={handleClick}>
+        {/* <li className={cx("nav-item", "fade")} id="pay" onClick={handleClick}>
           <div className={cx("item-wrap")}>
             <FontAwesomeIcon icon={faCreditCard} className={cx("nav-icon")} />
             <div className={cx("nav-item-name")}>Phương thức thanh toán</div>
@@ -201,7 +226,7 @@ function Nav() {
             <FontAwesomeIcon icon={faGear} className={cx("nav-icon")} />
             <div className={cx("nav-item-name")}>Cài đặt</div>
           </div>
-        </li>
+        </li> */}
       </div>
     </div>
   );

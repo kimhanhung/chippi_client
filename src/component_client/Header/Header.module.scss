@@ -67,7 +67,7 @@ Col{
     right: 0;
     padding-right: 10px;
     background: #FFFFFF;
-    // margin-right: 10px;
+     margin-right: 1rem;
 
     .icon {
       margin-right: 17px;
@@ -91,5 +91,52 @@ Col{
 .img-logo, .avatar-logo {
   height: 28px;
 }
+.dropdown-menu {
+  position: absolute;
+  margin-right: 3rem;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  display: none;
+  float: right;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  text-align: left;
+  list-style: none;
+  background-color: #f73164;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+// #notification{
+//   margin-right: 3rem;
 
+// }
+// .dropdown-menu.show {
+//   display: block;
+// }
+// .dropdown-notification{
+//   position: absolute;
+//   top: 100%;
+//   right: 0;
+//   z-index: 1000;
+//   display: none;
+//   float: right;
+//   min-width: 10rem;
+//   padding: 0.5rem 0;
+//   margin: 0.125rem 0 0;
+//   font-size: 1rem;
+//   text-align: left;
+//   list-style: none;
+//   background-color: #f73164;
+//   background-clip: padding-box;
+//   border: 1px solid rgba(0, 0, 0, 0.15);
+//   border-radius: 0.25rem;
+// }
 //---------------header-icon--------

@@ -12,7 +12,7 @@ function Pay_page() {
     return ( 
         <>
            <>
-          <Header />
+        
       <Row style={{ margin: "0px" }}>
         <Col sm={2}>
           <Nav />
@@ -20,6 +20,7 @@ function Pay_page() {
 
         <Col sm={10}>
           <div className={cx("content")}>
+              <Header />
             <Pay/>
             {/* <Contact/> */}
             {/* <Slider/>

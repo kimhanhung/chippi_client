@@ -3,12 +3,13 @@ import Nav from "../../../component_client/Nav/nav";
 import Header from "../../../component_client/Header/header";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import List_post from "../../../component_client/List_post/List_post";
 import classNames from "classnames/bind";
-import styles from "./Contact_page.module.scss";
+import styles from "./Post_page.module.scss";
 
 const cx = classNames.bind(styles);
 
-function Contact_page() {
+function Post_page() {
     return (  
         <>
          
@@ -19,14 +20,10 @@ function Contact_page() {
 
         <Col sm={10}>
           <div className={cx("content")}>
-             <Header />
-            <Contact/>
-            {/* <Slider/>
-            <Detail_post/>
-            <List_post/>
-            <Detail/>
-            <List />
-            <Transaction/> */}
+            <Header/>
+             <List_post/>
+            {/* <Detail_post/> */}
+           
           </div>
         </Col>
       </Row>
@@ -35,4 +32,4 @@ function Contact_page() {
     );
 }
 
-export default Contact_page;
+export default Post_page;

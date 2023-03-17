@@ -50,7 +50,7 @@ function List() {
                className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 2 })}
                onClick={() => handleButtonClick(2)}
               >
-                <p className={cx("text-btn")}>Thiết kế</p>
+                <p className={cx("text-btn")}>Tool thiết kế</p>
               </Button>
             </div>
             <div className={cx("btn")}>
@@ -58,7 +58,7 @@ function List() {
                className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 3 })}
                onClick={() => handleButtonClick(3)}
               >
-                <p className={cx("text-btn")}>Game</p>
+                <p className={cx("text-btn")}>Tool facebook</p>
               </Button>
             </div>
             <div className={cx("btn")}>
@@ -66,7 +66,23 @@ function List() {
                className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 4})}
                onClick={() => handleButtonClick(4)}
               >
-                <p className={cx("text-btn")}>Văn phòng</p>
+                <p className={cx("text-btn")}>Tool zalo</p>
+              </Button>
+            </div>
+            <div className={cx("btn")}>
+              <Button
+               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 5})}
+               onClick={() => handleButtonClick(5)}
+              >
+                <p className={cx("text-btn")}>Giải captcha</p>
+              </Button>
+            </div>
+            <div className={cx("btn")}>
+              <Button
+               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 6})}
+               onClick={() => handleButtonClick(6)}
+              >
+                <p className={cx("text-btn")}>Tool twitter</p>
               </Button>
             </div>
           </div>

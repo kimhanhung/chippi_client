@@ -25,11 +25,11 @@ function Sign_up() {
     <div className={cx("sign-in-block")}>
       <div className={cx("input-block")}>
         <div className={cx("user-name")}>
-          <p className={cx("label-user")}>tên tài khoản</p> <br />
+          <p className={cx("label-user")}>Tên tài khoản</p> <br />
           <input className={cx("input")} placeholder="tài khoản" />
         </div>
         <div className={cx("user-password")}>
-          <p className={cx("label-user")}>mật khẩu</p> <br />
+          <p className={cx("label-user")}>Mật khẩu</p> <br />
           <input
             className={cx("input")}
             type="password"

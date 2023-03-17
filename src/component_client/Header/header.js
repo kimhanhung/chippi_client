@@ -7,7 +7,7 @@ import {
   faBell,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { Dropdown } from "react-bootstrap";
 // import styles from"../Header/Header_client.scss";
 // import clsx from "clsx";
 import Container from "react-bootstrap/Container";
@@ -18,16 +18,19 @@ import styles from "../Header/Header.module.scss";
 const cx = classNames.bind(styles);
 
 const Header = () => {
+  const [showDropdownNotification, setShowDropdownNotification] =useState(false);
+  const [showDropdownMenu, setShowDropdownMenu] = useState(false);
+
   return (
     <div className={cx("header")}>
-      <Row >
-        <Col style={{background:"#FFFFFF"}}>
+      <Row>
+        {/* <Col style={{background:"#FFFFFF"}}>
           <div className={cx("header-logo")}>
             <img className = {cx("img-logo")} src={require("../../assets/logo.jpg")} />
             <p className={cx("soft-name")}>CHIPPISOFT</p>
           </div>
-        </Col>
-        <Col xs={8} style={{background:"#FFFFFF"}}>
+        </Col> */}
+        <Col xs={8} style={{ background: "#FFFFFF" }}>
           <div className={cx("header-btn")}>
             <Button className={cx("tool-btn ")}>
               <p className={cx("text")}>
@@ -43,25 +46,51 @@ const Header = () => {
             </Button>
           </div>
         </Col>
-        <Col style={{background:"#FFFFFF"}}>
+        <Col xs={4} style={{ background: "#FFFFFF" }}>
           <div className={cx("header-icon")}>
             <FontAwesomeIcon className={cx("icon")} icon={faMagnifyingGlass} />
-            <FontAwesomeIcon className={cx("icon")} icon={faBell} />
+            <div
+              className={cx("dropdown")}
+              onMouseEnter={() => setShowDropdownMenu(true)}
+              onMouseLeave={() => setShowDropdownMenu(false)}
+            >
+              <FontAwesomeIcon className={cx("icon")} icon={faBell} />
+              <div
+                className={cx(`${showDropdownMenu ? "show" : ""}`,"dropdown-menu ")}
+              >
+                <Dropdown.Item href="#/action-1">Action 1</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Action 2</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Action 3</Dropdown.Item>
+              </div>
+            </div>
+
             <div className={cx("block-admin")}>
               <img
                 className={cx("avatar-logo")}
                 src={require("../../assets/avatar.jpg")}
-              
               />
               <div className={cx("admin")}>
                 <p className={cx("admin-name")}>DAM Xuan Ninh</p>
-                <p className={cx("sub-text")}>
-                  Admin{" "}
+                <div className={cx("dropdown")} 
+                onMouseDown ={()=> setShowDropdownNotification(true)}
+                onMouseLeave ={()=> setShowDropdownNotification(false)}
+                >
+                   <p className={cx("sub-text")}>
+                  User{" "}
                   <FontAwesomeIcon
                     className={cx("icon")}
                     icon={faChevronDown}
                   />
                 </p>
+                <div
+                className={cx(`${showDropdownNotification? "show" : ""}`,"dropdown-menu ")}
+              >
+                <Dropdown.Item href="#/action-1">Thông tin cá nhân</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Đăng xuất</Dropdown.Item>
+              
+              </div>
+                </div>
+               
               </div>
             </div>
           </div>
