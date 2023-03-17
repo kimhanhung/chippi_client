@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.text {
+  padding: 0px 10px 0px 10px;
+  color: #ffff;
+  margin-bottom: 0rem;
+  background-color: transparent;
+}
+Col{
+  background: #FFFFFF;
+}
+.header {
+  //display: flex;
+  // justify-content: space-between;
+  padding: 22px 30px 22px 30px;
+  align-items: center;
+  box-shadow: 0px 4px 40px rgba(39, 32, 120, 0.1);
+  background: #FFFFFF;
+
+  
+
+}
+  .header-logo {
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    background: #FFFFFF;
+    .soft-name {
+      display: flex;
+      text-align: center;
+      margin-left: 9px;
+      margin-bottom: 0px;
+      background: #FFFFFF;
+    }
+  }
+  .header-btn {
+    display: flex;
+    .header-btn-global {
+      display: flex;
+      border-radius: 0.5rem;
+      height: 37px;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: #FFFFFF;
+    }
+    .tool-btn {
+      background-color: #7366ff;
+      margin-right: 10px;
+    }
+    .recharge-btn {
+      background-color: #f73164;
+    }
+    .icon-btn {
+      padding-right: 5px;
+      // margin: 0px 17px 0px 0px;
+      background-color: transparent;
+    }
+  }
+  .header-icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    background: #FFFFFF;
+    // margin-right: 10px;
+
+    .icon {
+      margin-right: 17px;
+    }
+    .block-admin {
+      display: flex;
+      align-items: center;
+      .avatar-logo {
+        height: 37px;
+      }
+
+      .sub-text {
+        color: #8d8d8d;
+        font-size: 12px;
+      }
+      .admin-name {
+        margin-bottom: 0rem;
+      }
+    }
+  }
+.img-logo, .avatar-logo {
+  height: 28px;
+}
+
+//---------------header-icon--------
