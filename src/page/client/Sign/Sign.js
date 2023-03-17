@@ -1,4 +1,6 @@
 import Sign_up from "../../../component_client/Sign/Sign_up";
+import Sign_in from "../../../component_client/Sign/Sign_up";
+// import Sign_in from "../../../component_client/Sign/Sign_up";
 // import Sign_up from "../../../component_client/Sign/Sign_up";
 import { useState, useEffect } from "react";
 import Captcha from "../../../component_client/captcha/Captcha";
@@ -52,7 +54,7 @@ function Sign_client() {
                 onClick ={()=>handleShowLogIn(2)}
                 >ĐĂNG KÝ</div>
               </div>
-             {/* { showLogIn && <Sign_in/>} */}
+             { showLogIn && <Sign_in/>}
              {showSignUp && <Sign_up/>}
               {/* <div className={cx("sign-in-block")}>
                 <div className={cx("input-block")}>

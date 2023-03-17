@@ -21,8 +21,8 @@ function App() {
     <div className="App">
       {/* <Pay_page/> */}
       {/* <Contact_page/> */}
-        <Home/>
-        {/* <Sign_client/> */}
+        {/* <Home/> */}
+        <Sign_client/>
        {/* <Routes>
          <Route path="/" element={<Dashboard />} />
          <Route path="/sign" element={<Sign />} />

@@ -21,7 +21,7 @@ function Captcha() {
     const chars =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let captcha = "";
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 6; i++) {
       captcha += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return captcha;
@@ -41,10 +41,10 @@ function Captcha() {
     ctx.fillStyle = "#333";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    let x = canvas.width / 7;
+    let x = canvas.width / 15;
     let y = canvas.height / 2;
     for (let i = 0; i < captcha.length; i++) {
-      x += canvas.width / 7;
+      x += canvas.width / 8;
       ctx.fillText(captcha.charAt(i), x, y);
     }
 
