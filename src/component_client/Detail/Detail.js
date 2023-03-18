@@ -79,10 +79,11 @@ function Detail() {
         </Col>
       </Row>
       <div className={cx("des")}>
-        <p>viết đoạn văn ngắn tại đây</p>
+        <p className={cx("title-des")}>Mô tả chi tiết</p>
+        <p className={cx("des-content")}>viết đoạn văn ngắn tại đây</p>
       </div>
     </div>
-  );
+  ); 
 }
 
 export default Detail;
