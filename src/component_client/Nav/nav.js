@@ -2,7 +2,6 @@ import classNames from "classnames/bind";
 import styles from "./Nav.module.scss";
 import {
   faDollarSign,
-
   faGauge,
   faChevronDown,
   faLock,
@@ -25,25 +24,31 @@ function Nav() {
     console.log(elementClicked);
     const elementId = elementClicked.id;
     const element = document.getElementsByClassName("Nav_nav-item__CP5be");
-    console.log(element);
-    console.log(elementId);
-    for (let i = 0; i < element.length; i++) {
-      element[i].classList.remove(cx("active"));
-      console.log(i);
+    if (elementId) {
+      console.log(element);
+      console.log(elementId);
+      for (let i = 0; i < element.length; i++) {
+        element[i].classList.remove(cx("active"));
+        console.log(i);
+      }
+      document.getElementById(elementId).classList.add(cx("active"));
     }
-    document.getElementById(elementId).classList.add(cx("active"));
   };
   const handleClickSubMenu = (event) => {
     const elementClicked = event.target;
     const elementId = elementClicked.id;
     let menuId = `${elementId}-sub-menu`;
-    document.getElementById(elementId).classList.toggle(cx("active-btn-down"));
-    if (
+   
+    if(elementId){
+       document.getElementById(elementId).classList.toggle(cx("active-btn-down"));
+      if (
       document.getElementById(menuId).style.display === "none" ||
       document.getElementById(menuId).style.display === ""
     ) {
       document.getElementById(menuId).style.display = "block";
     } else document.getElementById(menuId).style.display = "none";
+    }
+    
   };
 
   return (
@@ -139,10 +144,7 @@ function Nav() {
         <li className={cx("nav-item", "fade")} id="history">
           <div className={cx("item-wrap", "nav-item-down")}>
             <div className={cx("nav-item-left")}>
-              <FontAwesomeIcon
-                icon={faClipboard}
-                className={cx("nav-icon")}
-              />
+              <FontAwesomeIcon icon={faClipboard} className={cx("nav-icon")} />
               <div className={cx("nav-item-name")}>Bài viết</div>
             </div>
             <div>

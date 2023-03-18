@@ -2,16 +2,19 @@ import { useState } from "react";
 import Button from "../../button/btn";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import AsNavFor from "../img_detail/img_detail";
 import classNames from "classnames/bind";
 import styles from "../Detail/Detail.module.scss";
 
 const cx = classNames.bind(styles);
 
 function Detail() {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(30);
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    var num = +quantity;
+
+    setQuantity(num + 1);
   };
 
   const handleDecrement = () => {
@@ -24,52 +27,18 @@ function Detail() {
 
   const handleImageClick = (selectedImage) => {
     setSelectedImage(selectedImage);
-    console.log( typeof(selectedImage) );
+    console.log(typeof selectedImage);
   };
+  var link_img = '"' + selectedImage + '" ';
   return (
     <div className={cx("block")}>
       <Row>
-        <Col sm={8}>
-          <Row>
-            <Col sm={3}>
-              <div className={cx("img")}>
-                <img
-                  className={cx("sub-img-detail")}
-                  src={require("../../assets/1.jpg")}
-                  onClick={() => handleImageClick("../../assets/1.jpg")}
-                />
-                <img
-                  className={cx("sub-img-detail")}
-                  src={require("../../assets/2.jpg")}
-                  onClick={() => handleImageClick("../../assets/2.jpg")}
-                />
-                <img
-                  className={cx("sub-img-detail")}
-                  src={require("../../assets/bk_sign.jpeg")}
-                  onClick={() => handleImageClick("../../assets/bk_sign.jpeg")}
-                />
-              </div>
-            </Col>
-            <Col sm={9}>
-              {" "}
-              {selectedImage && (
-                <div className="image-popup">
-                  {/* <img src={selectedImage} alt="Selected image" /> */}
-                  <img
-                    className={cx("img-detail")}
-                    src= {selectedImage}
-                  />
-                </div>
-               )} 
-              {/* <img
-                className={cx("img-detail")}
-                src={require("../../assets/logo.jpg")}
-              /> */}
-            </Col>
-          </Row>
+        <Col sm={7}>
+          <AsNavFor />
+    
         </Col>
 
-        <Col sm={4}>
+        <Col sm={5}>
           <div className={cx("infor-detail")}>
             <div className={cx("nav")}>
               <p>Sản phẩm / thiết kế</p>
@@ -81,16 +50,20 @@ function Detail() {
                 Sản phẩm hỗ trợ thiết kế ảnh 2D, 3D, vector với nhiều tính năng
                 ưu việt vjppro
               </p>
+            </div>{" "}
+            <div>
+              <p>Số ngày: </p>
             </div>
             <div className={cx("day")}>
               <Button className={cx("primary-btn")} onClick={handleDecrement}>
                 -
               </Button>
+
               <input
                 className={cx("input-day")}
                 type="number"
                 value={quantity}
-                readOnly
+                onChange={(quantity) => setQuantity(quantity.target.value)}
               />
               <Button className={cx("primary-btn")} onClick={handleIncrement}>
                 +

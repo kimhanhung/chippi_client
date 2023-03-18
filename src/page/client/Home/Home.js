@@ -26,8 +26,8 @@ function Home() {
           <div className={cx("content")}>
             <Header />
             <Slider/>
-            <Detail_post/>
-            <List_post/>
+            {/* <Detail_post/>
+            <List_post/> */}
             {/* <Detail/> */}
             <List />
             <Transaction/>

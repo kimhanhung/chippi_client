@@ -69,7 +69,7 @@ function Pay() {
           </div>
         </div>
       </div>
-      <h1>đây là trang pay</h1>
+     
     </>
   );
 }

@@ -7,7 +7,7 @@ import {
   faBell,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
-import { Dropdown } from "react-bootstrap";
+// import { Dropdown,DropdownButton } from "react-bootstrap";
 // import styles from"../Header/Header_client.scss";
 // import clsx from "clsx";
 import Container from "react-bootstrap/Container";
@@ -50,17 +50,23 @@ const Header = () => {
           <div className={cx("header-icon")}>
             <FontAwesomeIcon className={cx("icon")} icon={faMagnifyingGlass} />
             <div
-              className={cx("dropdown")}
-              onMouseEnter={() => setShowDropdownMenu(true)}
+              className={cx("menu")}
+              onMouseDown={() => setShowDropdownMenu(true)}
               onMouseLeave={() => setShowDropdownMenu(false)}
             >
               <FontAwesomeIcon className={cx("icon")} icon={faBell} />
               <div
-                className={cx(`${showDropdownMenu ? "show" : ""}`,"dropdown-menu ")}
-              >
-                <Dropdown.Item href="#/action-1">Action 1</Dropdown.Item>
+                className={cx(
+                  `${showDropdownMenu? "show" : "not-show"}`
+               
+                )}
+              > <ul className={cx("list-item-user")}>
+              <li className={cx("hower-li")}>Thông báo 1</li>
+              <li className={cx("hower-li")}>Thông báo 2</li>
+            </ul>
+                {/* <Dropdown.Item href="#/action-1">Action 1</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Action 2</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Action 3</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Action 3</Dropdown.Item> */}
               </div>
             </div>
 
@@ -71,26 +77,30 @@ const Header = () => {
               />
               <div className={cx("admin")}>
                 <p className={cx("admin-name")}>DAM Xuan Ninh</p>
-                <div className={cx("dropdown")} 
-                onMouseDown ={()=> setShowDropdownNotification(true)}
-                onMouseLeave ={()=> setShowDropdownNotification(false)}
-                >
-                   <p className={cx("sub-text")}>
-                  User{" "}
-                  <FontAwesomeIcon
-                    className={cx("icon")}
-                    icon={faChevronDown}
-                  />
-                </p>
                 <div
-                className={cx(`${showDropdownNotification? "show" : ""}`,"dropdown-menu ")}
-              >
-                <Dropdown.Item href="#/action-1">Thông tin cá nhân</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Đăng xuất</Dropdown.Item>
-              
-              </div>
+                  className={cx("dropdown")}
+                  onMouseDown={() => setShowDropdownNotification(true)}
+                  onMouseLeave={() => setShowDropdownNotification(false)}
+                >
+                  <p className={cx("sub-text")}>
+                    User{" "}
+                    <FontAwesomeIcon
+                      className={cx("icon")}
+                      icon={faChevronDown}
+                    />
+                  </p>
+                  <div
+                    className={cx(
+                      `${showDropdownNotification ? "show" : "not-show"}`
+                      
+                    )}
+                  >
+                    <ul className={cx("list-item-user")}>
+                      <li className={cx("hower-li")}>Thông tin cá nhân</li>
+                      <li className={cx("hower-li")}>Đăng xuất</li>
+                    </ul>
+                  </div>
                 </div>
-               
               </div>
             </div>
           </div>

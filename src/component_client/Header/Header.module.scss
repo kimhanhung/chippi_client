@@ -91,24 +91,53 @@ Col{
 .img-logo, .avatar-logo {
   height: 28px;
 }
-.dropdown-menu {
+.show li{
+    list-style-type: none;
+    padding: 0.2rem 0rem;
+    display: block;
+    border: 10px;
+    cursor: pointer;
+}
+.hower-li:hover{
+  background-color: #dddddd;
+}
+.list-item-user{
+  padding: 0.2rem 1rem;
+}
+.icon{
+  position: relative;
+}
+.show {
   position: absolute;
-  margin-right: 3rem;
+  margin-right: 1rem;
   top: 100%;
   right: 0;
   z-index: 1000;
-  display: none;
-  float: right;
-  min-width: 10rem;
-  padding: 0.5rem 0;
-  margin: 0.125rem 0 0;
+  display: block;
+  min-width: 20rem;
+  // margin: 1rem 0 0 0;
   font-size: 1rem;
-  text-align: left;
+  padding: 0.75rem 0 0 0;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
   list-style: none;
-  background-color: #f73164;
+   background-color: #FFF;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
+  border-radius: 10px;
+
+}
+.not-show {
+ display: none;
+}
+.menu::before{
+  content: "";
+display: block;
+  top: 3rem;
+  left: 1rem;
+  
+position: absolute;
+border: 1px solid rgba(82, 82, 108, 0);
+border-width: 30px 30px;
 }
 .dropdown {
   position: relative;
