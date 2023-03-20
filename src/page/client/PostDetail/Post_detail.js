@@ -10,26 +10,26 @@ import styles from "./Post_detail.module.scss";
 const cx = classNames.bind(styles);
 
 function Post_page_detail() {
-    return (  
-        <>
-         
+  return (
+    <>
+      <Row>
+        <Header />
+      </Row>
       <Row style={{ margin: "0px" }}>
-        <Col sm={2}>
+        <Col sm={2} style={{ padding: "0px" }}>
           <Nav />
         </Col>
 
         <Col sm={10}>
           <div className={cx("content")}>
-            <Header/>
-             <Detail_post/>
+            <Detail_post />
             {/* <Detail_post/> */}
-           
           </div>
         </Col>
       </Row>
-        {/* <Contact/> */}
-        </>
-    );
+      {/* <Contact/> */}
+    </>
+  );
 }
 
 export default Post_page_detail;

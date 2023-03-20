@@ -10,31 +10,24 @@ import Button from "../../../button/btn";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import classNames from "classnames/bind";
-import styles from "../Home/Home.module.scss";
+import styles from "./ListProduce.module.scss";
 
 const cx = classNames.bind(styles);
-function Home() {
+function List_page() {
   return (
     <>
       <Row>
-          <Header />
+        <Header />
       </Row>
       <Row style={{ margin: "0px" }}>
-        <Col sm={2} 
-        style ={{padding:"0px"}}
-        >
+        <Col sm={2} style={{ padding: "0px" }}>
           <Nav />
         </Col>
 
         <Col sm={10}>
           <div className={cx("content")}>
-          
-            <Slider/>
-            {/* <Detail_post/>
-            <List_post/> */}
-            {/* <Detail/> */}
             <List />
-            <Transaction/>
+            <Transaction />
           </div>
         </Col>
       </Row>
@@ -42,4 +35,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default List_page;

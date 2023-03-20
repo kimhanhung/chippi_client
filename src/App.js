@@ -18,6 +18,7 @@ import Error_not_found from "./page/client/Error/Error404";
 import {  Route, Routes } from "react-router-dom";
 import Intro from "./component_client/Intro";
 import Account_page from "./page/client/Account/user_page";
+import List_page from "./page/client/listProduce/listProduce";
 import { Switch } from 'react-router-dom'
 // import Detail from "./component_client/Detail/Detail";
 // import { Routes} from "react-router";
@@ -36,6 +37,7 @@ function App() {
        <Routes>
        
         <Route path="/" element={<Home />} /> 
+        <Route path="/list" element={<List_page/>} />
         <Route path="/detail" element={<Detail_page/>} />
         <Route path="/listPost" element={<Post_page/>} />
         <Route path="/post" element={<Post_page_detail/>} />

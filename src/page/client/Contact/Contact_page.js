@@ -9,18 +9,19 @@ import styles from "./Contact_page.module.scss";
 const cx = classNames.bind(styles);
 
 function Contact_page() {
-    return (  
-        <>
-         
+  return (
+    <>
+      <Row>
+        <Header />
+      </Row>
       <Row style={{ margin: "0px" }}>
-        <Col sm={2}>
+        <Col sm={2} style={{ padding: "0px" }}>
           <Nav />
         </Col>
 
         <Col sm={10}>
           <div className={cx("content")}>
-             <Header />
-            <Contact/>
+            <Contact />
             {/* <Slider/>
             <Detail_post/>
             <List_post/>
@@ -30,9 +31,9 @@ function Contact_page() {
           </div>
         </Col>
       </Row>
-        {/* <Contact/> */}
-        </>
-    );
+      {/* <Contact/> */}
+    </>
+  );
 }
 
 export default Contact_page;

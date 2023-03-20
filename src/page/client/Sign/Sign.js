@@ -1,5 +1,5 @@
 import Sign_up from "../../../component_client/Sign/Sign_up";
-import Sign_in from "../../../component_client/Sign/Sign_up";
+import Sign_in from "../../../component_client/Sign/Sign_in";
 // import Sign_in from "../../../component_client/Sign/Sign_up";
 // import Sign_up from "../../../component_client/Sign/Sign_up";
 import { useState, useEffect } from "react";

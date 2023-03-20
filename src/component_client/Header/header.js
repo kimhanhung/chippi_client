@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../button/btn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Navigate, useNavigate } from "react-router-dom";
 import {
   faMagnifyingGlass,
   faBolt,
@@ -20,17 +21,18 @@ const cx = classNames.bind(styles);
 const Header = () => {
   const [showDropdownNotification, setShowDropdownNotification] =useState(false);
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
-
+ const navigate = useNavigate();
   return (
+   
     <div className={cx("header")}>
       <Row>
-        {/* <Col style={{background:"#FFFFFF"}}>
+        <Col cx={2} style={{background:"#FFFFFF"}}>
           <div className={cx("header-logo")}>
             <img className = {cx("img-logo")} src={require("../../assets/logo.jpg")} />
             <p className={cx("soft-name")}>CHIPPISOFT</p>
           </div>
-        </Col> */}
-        <Col xs={8} style={{ background: "#FFFFFF" }}>
+        </Col>
+        <Col xs={6} style={{ background: "#FFFFFF" }}>
           <div className={cx("header-btn")}>
             <Button className={cx("tool-btn ")}>
               <p className={cx("text")}>
@@ -96,8 +98,12 @@ const Header = () => {
                     )}
                   >
                     <ul className={cx("list-item-user")}>
-                      <li className={cx("hower-li")}>Thông tin cá nhân</li>
-                      <li className={cx("hower-li")}>Đăng xuất</li>
+                      <li className={cx("hower-li")}
+                      onClick={()=>navigate("/accountUser")}
+                      >Thông tin cá nhân</li>
+                      <li className={cx("hower-li")}
+                      onClick ={()=>navigate("/sign")}
+                      >Đăng xuất</li>
                     </ul>
                   </div>
                 </div>

@@ -62,9 +62,10 @@ function Captcha() {
   function handleSubmit(e) {
     e.preventDefault();
     if (captchaValue === currentCaptcha) {
-      alert("Captcha is valid!");
+      alert("Captcha chính xác!");
     } else {
-      alert("Captcha is invalid!");
+      alert("Nhập sai captcha!");
+      drawCaptcha();
     }
   }
 
@@ -86,7 +87,7 @@ function Captcha() {
           id="refresh-btn"
           onClick={drawCaptcha}
         >
-          <FontAwesomeIcon icon={faArrowsRotate} />
+          <FontAwesomeIcon className={cx("icon-reload")} icon={faArrowsRotate} />
         </Button>
       </div>
       <div className={cx("btn-sign")}>

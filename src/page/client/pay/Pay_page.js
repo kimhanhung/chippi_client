@@ -9,33 +9,34 @@ import styles from "./Pay_page.module.scss";
 
 const cx = classNames.bind(styles);
 function Pay_page() {
-    return ( 
-        <>
-           <>
-        
-      <Row style={{ margin: "0px" }}>
-        <Col sm={2}>
-          <Nav />
-        </Col>
+  return (
+    <>
+      <>
+        <Row>
+          <Header />
+        </Row>
+        <Row style={{ margin: "0px" }}>
+          <Col sm={2} style={{ padding: "0px" }}>
+            <Nav />
+          </Col>
 
-        <Col sm={10}>
-          <div className={cx("content")}>
-              <Header />
-            <Pay/>
-            {/* <Contact/> */}
-            {/* <Slider/>
+          <Col sm={10}>
+            <div className={cx("content")}>
+              <Pay />
+              {/* <Contact/> */}
+              {/* <Slider/>
             <Detail_post/>
             <List_post/>
             <Detail/>
             <List />
             <Transaction/> */}
-          </div>
-        </Col>
-      </Row>
+            </div>
+          </Col>
+        </Row>
         {/* <Contact/> */}
-        </>
-        </>
-     );
+      </>
+    </>
+  );
 }
 
 export default Pay_page;

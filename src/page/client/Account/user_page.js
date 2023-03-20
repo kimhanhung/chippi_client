@@ -10,26 +10,26 @@ import styles from "./User_page.module.scss";
 const cx = classNames.bind(styles);
 
 function Account_page() {
-    return (  
-        <>
-         
+  return (
+    <>
+      <Row>
+        <Header />
+      </Row>
       <Row style={{ margin: "0px" }}>
-        <Col sm={2}>
+        <Col sm={2} style={{ padding: "0px" }}>
           <Nav />
         </Col>
 
         <Col sm={10}>
           <div className={cx("content")}>
-            <Header/>
-             <Account/>
+            <Account />
             {/* <Detail_post/> */}
-           
           </div>
         </Col>
       </Row>
-        {/* <Contact/> */}
-        </>
-    );
+      {/* <Contact/> */}
+    </>
+  );
 }
 
 export default Account_page;

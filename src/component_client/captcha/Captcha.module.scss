@@ -1,6 +1,9 @@
 .captcha-input{
     display: flex;
 }
+.refresh-btn{
+    color: #000;
+}
 .input{
     margin-right: 15px;
     margin-bottom: 10px;
@@ -16,4 +19,7 @@
 }
 .icon{
     background-color: transparent;
+}
+.icon-reload{
+    color: #000;
 }

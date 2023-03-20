@@ -15,10 +15,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faClipboard } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Navigate, useNavigate } from "react-router-dom";
 // import ReactDOM from "react-dom/client";
 
 const cx = classNames.bind(styles);
 function Nav() {
+  const navigate = useNavigate();
+  const [clickState, showClickState] = ("");
   const handleClick = (event) => {
     const elementClicked = event.target;
     console.log(elementClicked);
@@ -53,7 +56,8 @@ function Nav() {
 
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("nav-top")}>
+      {/* <div className={cx("nav-top")}  onClick = {()=> navigate("/")}>
+       
         <div className={cx("nav-top-logo")}>
           <img
             className={cx("nav-top-logo-img")}
@@ -61,7 +65,7 @@ function Nav() {
           />
         </div>
         <div className={cx("nav-top-name")}>CHIPPISOFT </div>
-      </div>
+      </div> */}
       <div className={cx("nav-list")}>
         {/* <li
           className={cx("nav-item", "fade")}
@@ -76,7 +80,10 @@ function Nav() {
 
         <li className={cx("nav-item", "fade")} id="product">
           <div className={cx("item-wrap", "nav-item-down")}>
-            <div className={cx("nav-item-left")}>
+            <div className={cx("nav-item-left")}
+            onClick ={()=> navigate("/list") }
+            >
+             
               <FontAwesomeIcon
                 icon={faBarsStaggered}
                 className={cx("nav-icon")}
@@ -135,7 +142,9 @@ function Nav() {
           id="sercurity"
           onClick={handleClick}
         >
-          <div className={cx("item-wrap")}>
+          <div className={cx("item-wrap")}
+           onClick ={()=> navigate("/pay") }
+          >
             <FontAwesomeIcon icon={faDollarSign} className={cx("nav-icon")} />
             <div className={cx("nav-item-name")}>Nạp tiền</div>
           </div>
@@ -143,7 +152,9 @@ function Nav() {
 
         <li className={cx("nav-item", "fade")} id="history">
           <div className={cx("item-wrap", "nav-item-down")}>
-            <div className={cx("nav-item-left")}>
+            <div className={cx("nav-item-left")}
+            onClick ={()=> navigate("/listPost")}
+            >
               <FontAwesomeIcon icon={faClipboard} className={cx("nav-icon")} />
               <div className={cx("nav-item-name")}>Bài viết</div>
             </div>
@@ -185,7 +196,9 @@ function Nav() {
           id="members"
           onClick={handleClick}
         >
-          <div className={cx("item-wrap")}>
+          <div className={cx("item-wrap")}
+          onClick ={()=> navigate("/contact")}
+          >
             <FontAwesomeIcon icon={faUsers} className={cx("nav-icon")} />
             <div className={cx("nav-item-name")}>Liên hệ</div>
           </div>
