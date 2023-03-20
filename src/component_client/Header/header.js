@@ -6,8 +6,10 @@ import {
   faMagnifyingGlass,
   faBolt,
   faBell,
+  faArrowRightFromBracket,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 // import { Dropdown,DropdownButton } from "react-bootstrap";
 // import styles from"../Header/Header_client.scss";
 // import clsx from "clsx";
@@ -19,16 +21,27 @@ import styles from "../Header/Header.module.scss";
 const cx = classNames.bind(styles);
 
 const Header = () => {
-  const [showDropdownNotification, setShowDropdownNotification] =useState(false);
+  const [showDropdownNotification, setShowDropdownNotification] =
+    useState(false);
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
- const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  function shortenText(text, maxLength) {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength - 3) + "...";
+    } else {
+      return text;
+    }
+  }
   return (
-   
     <div className={cx("header")}>
       <Row>
-        <Col cx={2} style={{background:"#FFFFFF"}}>
-          <div className={cx("header-logo")}>
-            <img className = {cx("img-logo")} src={require("../../assets/logo.jpg")} />
+        <Col cx={2} style={{ background: "#FFFFFF" }}>
+          <div className={cx("header-logo")} onClick={() => navigate("/")}>
+            <img
+              className={cx("img-logo")}
+              src={require("../../assets/logo.jpg")}
+            />
             <p className={cx("soft-name")}>CHIPPISOFT</p>
           </div>
         </Col>
@@ -53,19 +66,33 @@ const Header = () => {
             <FontAwesomeIcon className={cx("icon")} icon={faMagnifyingGlass} />
             <div
               className={cx("menu")}
-              onMouseDown={() => setShowDropdownMenu(true)}
-              onMouseLeave={() => setShowDropdownMenu(false)}
+              onMouseDown={() => setShowDropdownNotification(true)}
+              onMouseLeave={() => setShowDropdownNotification(false)}
             >
               <FontAwesomeIcon className={cx("icon")} icon={faBell} />
               <div
                 className={cx(
-                  `${showDropdownMenu? "show" : "not-show"}`
-               
+                  `${showDropdownNotification ? "show" : "not-show"}`
                 )}
-              > <ul className={cx("list-item-user")}>
-              <li className={cx("hower-li")}>Thông báo 1</li>
-              <li className={cx("hower-li")}>Thông báo 2</li>
-            </ul>
+              >
+                {" "}
+                <ul className={cx("list-item-user")}>
+                  <li className={cx("hower-li-noti")}>
+                    {shortenText(
+                      "Chương trình khuyến mãi khi dowload những app sau:",
+                      40
+                    )}
+                  </li>
+                  <li className={cx("hower-li-noti")}>
+                    {" "}
+                    {shortenText(
+                      "Bạn đã đăng nhập từ một thiết bị khác, vui lòng kiểm tra lại tài khoản của",
+                      40
+                    )}
+                  </li>
+                  <li className={cx("hower-li-noti")}>Thông báo 3: admin</li>
+                  <li className={cx("hower-li-noti")}>Thông báo 2</li>
+                </ul>
                 {/* <Dropdown.Item href="#/action-1">Action 1</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Action 2</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Action 3</Dropdown.Item> */}
@@ -81,8 +108,8 @@ const Header = () => {
                 <p className={cx("admin-name")}>DAM Xuan Ninh</p>
                 <div
                   className={cx("dropdown")}
-                  onMouseDown={() => setShowDropdownNotification(true)}
-                  onMouseLeave={() => setShowDropdownNotification(false)}
+                  onMouseDown={() => setShowDropdownMenu(true)}
+                  onMouseLeave={() => setShowDropdownMenu(false)}
                 >
                   <p className={cx("sub-text")}>
                     User{" "}
@@ -92,18 +119,23 @@ const Header = () => {
                     />
                   </p>
                   <div
-                    className={cx(
-                      `${showDropdownNotification ? "show" : "not-show"}`
-                      
-                    )}
+                    className={cx(`${showDropdownMenu ? "show" : "not-show"}`)}
                   >
                     <ul className={cx("list-item-user")}>
-                      <li className={cx("hower-li")}
-                      onClick={()=>navigate("/accountUser")}
-                      >Thông tin cá nhân</li>
-                      <li className={cx("hower-li")}
-                      onClick ={()=>navigate("/sign")}
-                      >Đăng xuất</li>
+                      <li
+                        className={cx("hower-li")}
+                        onClick={() => navigate("/accountUser")}
+                      >
+                        <FontAwesomeIcon icon={faUser} />
+                        <label className={cx("menu-text")}> Thông tin cá nhân </label>
+                      </li>
+                      <li
+                        className={cx("hower-li")}
+                        onClick={() => navigate("/sign")}
+                      >
+                        <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                        <label className={cx("menu-text")}> Đăng xuất </label>
+                      </li>
                     </ul>
                   </div>
                 </div>
