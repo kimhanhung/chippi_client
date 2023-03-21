@@ -24,6 +24,7 @@ const Header = () => {
   const [showDropdownNotification, setShowDropdownNotification] =
     useState(false);
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
+  const [showInputFind, setShowInputFind] = useState(false);
   const navigate = useNavigate();
 
   function shortenText(text, maxLength) {
@@ -36,7 +37,7 @@ const Header = () => {
   return (
     <div className={cx("header")}>
       <Row>
-        <Col cx={2} style={{ background: "#FFFFFF" }}>
+        <Col sm={2} style={{ background: "#FFFFFF" }}>
           <div className={cx("header-logo")} onClick={() => navigate("/")}>
             <img
               className={cx("img-logo")}
@@ -45,7 +46,7 @@ const Header = () => {
             <p className={cx("soft-name")}>CHIPPISOFT</p>
           </div>
         </Col>
-        <Col xs={6} style={{ background: "#FFFFFF" }}>
+        <Col sm={6} style={{ background: "#FFFFFF" }}>
           <div className={cx("header-btn")}>
             <Button className={cx("tool-btn ")}>
               <p className={cx("text")}>
@@ -61,9 +62,29 @@ const Header = () => {
             </Button>
           </div>
         </Col>
-        <Col xs={4} style={{ background: "#FFFFFF" }}>
-          <div className={cx("header-icon")}>
-            <FontAwesomeIcon className={cx("icon")} icon={faMagnifyingGlass} />
+        <Col sm={4} style={{ background: "#FFFFFF" }}>
+          <div
+            className={cx("header-icon")}
+            // onMouseDown ={()=> setShowInputFind(true)}
+            // onMouseLeave ={()=>setShowInputFind(false)}
+          >
+            <div
+              className={cx("input-block")}
+              onMouseDown={() => setShowInputFind(true)}
+              onMouseLeave={() => setShowInputFind(false)}
+            >
+              <input
+                className={cx(
+                  `${showInputFind ? "input-find" : "not-input-find"}`
+                )}
+                placeholder="Tìm kiếm"
+              />
+              <FontAwesomeIcon
+                className={cx("icon")}
+                icon={faMagnifyingGlass}
+              />
+            </div>
+
             <div
               className={cx("menu")}
               onMouseDown={() => setShowDropdownNotification(true)}
@@ -80,14 +101,14 @@ const Header = () => {
                   <li className={cx("hower-li-noti")}>
                     {shortenText(
                       "Chương trình khuyến mãi khi dowload những app sau:",
-                      40
+                      30
                     )}
                   </li>
                   <li className={cx("hower-li-noti")}>
                     {" "}
                     {shortenText(
                       "Bạn đã đăng nhập từ một thiết bị khác, vui lòng kiểm tra lại tài khoản của",
-                      40
+                      30
                     )}
                   </li>
                   <li className={cx("hower-li-noti")}>Thông báo 3: admin</li>
@@ -127,7 +148,10 @@ const Header = () => {
                         onClick={() => navigate("/accountUser")}
                       >
                         <FontAwesomeIcon icon={faUser} />
-                        <label className={cx("menu-text")}> Thông tin cá nhân </label>
+                        <label className={cx("menu-text")}>
+                          {" "}
+                          Thông tin cá nhân{" "}
+                        </label>
                       </li>
                       <li
                         className={cx("hower-li")}

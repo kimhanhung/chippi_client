@@ -58,6 +58,22 @@ Col {
     background-color: transparent;
   }
 }
+.input-find {
+  margin-right: 1rem;
+  padding-left: 0.7rem;
+  border-radius: 10px;
+  height: 3.5rem;
+  outline: none;
+  border: none;
+  background-color: #ececec;
+  font-size: 16px;
+}
+.not-input-find {
+  display: none;
+}
+// .input-block{
+//   display: flex;
+// }
 .header-icon {
   display: flex;
   align-items: center;
@@ -90,52 +106,53 @@ Col {
 .avatar-logo {
   height: 28px;
 }
-.show li {
-  list-style-type: none;
-   padding: 0.3rem 0.7rem 0.3rem 0rem;
-  display: block;
-  border: 10px;
-  cursor: pointer;
-   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
+
 .hower-li {
   font-size: 20px;
-  // padding-bottom: 10px;
+  padding: 0.7rem;
+  // padding-left: 10px;
+  // padding: 10px 0px 10px 10px;
 }
 .hower-li:hover {
-  background-color: #dddddd;
+  background-color: #ececec;
+  border-radius: 10px;
 }
 .hower-li-noti {
   font-size: 16px;
-  // padding-bottom: 100px;
-  // border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0.7rem;
+  // padding-left: 10px;
 }
 .hower-li-noti:hover {
-  background-color: #dddddd;
-  // border-bottom: 1px solid #f73164;
+  background-color: #ececec;
+  border-radius: 10px;
 }
-// .list-item-user {
-//   padding: 0.2rem 1rem;
-// }
-
 .icon {
   position: relative;
 }
 .show {
   position: absolute;
-  margin-right: 1rem;
+  // margin-right: 1rem;
   top: 100%;
   right: 0;
   z-index: 1000;
   display: block;
   min-width: 30rem;
   // font-size: 1rem;
-  padding: 0.75rem 1rem 0.75rem 0;
+  padding: 0.8rem 2rem 0rem 0rem;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
   list-style: none;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+}
+.show li {
+  list-style-type: none;
+  // margin: 0rem 0rem 0rem 0rem;
+  // padding: ;
+  display: block;
+  border: 10px;
+  cursor: pointer;
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 .not-show {
   display: none;
@@ -149,11 +166,10 @@ Col {
   border: 1px solid rgba(82, 82, 108, 0);
   border-width: 30px 30px;
 }
-.menu-text{
+.menu-text {
   padding-left: 10px;
 }
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
