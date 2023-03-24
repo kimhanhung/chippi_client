@@ -33,7 +33,7 @@ function List() {
   };
   return (
     <>
-      <div className={cx("list")}>
+      <div className={cx("list", "desktop-reponsive")}>
         <div className={cx("list-block")}>
           <div className={cx("list-button")}>
             <div className={cx("btn")}>
@@ -341,6 +341,9 @@ function List() {
             </div>
           </div>
         </div>
+      </div>
+      <div className={cx("list", "mobile-reponsive")}>
+        
       </div>
     </>
   );

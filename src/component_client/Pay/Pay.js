@@ -14,7 +14,7 @@ function Pay() {
           <div className={cx("title")}>NẠP QUA BANK</div>
           <div className={cx("deposit-methods")}>
             <Row>
-              <Col>
+              <Col sm={6}>
                 <div className={cx("account-infor")}>
                   <div className={cx("sub-title")}>
                     Nạp tiền qua số tài khoản
@@ -49,7 +49,7 @@ function Pay() {
                   </div>
                 </div>
               </Col>
-              <Col>
+              <Col sm={6}>
                 <div className={cx("sub-title")}>Nạp tiền qua mã QR</div>
               </Col>
             </Row>

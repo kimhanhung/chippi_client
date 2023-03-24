@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <div className={cx("header")}>
       <Row>
-        <Col sm={2} style={{ background: "#FFFFFF" }}>
+        <Col sm={2}  xs={2}>
           <div className={cx("header-logo")} onClick={() => navigate("/")}>
             <img
               className={cx("img-logo")}
@@ -46,7 +46,7 @@ const Header = () => {
             <p className={cx("soft-name")}>CHIPPISOFT</p>
           </div>
         </Col>
-        <Col sm={6} style={{ background: "#FFFFFF" }}>
+        <Col sm={6}    xs={8}>
           <div className={cx("header-btn")}>
             <Button className={cx("tool-btn ")}>
               <p className={cx("text")}>
@@ -62,7 +62,7 @@ const Header = () => {
             </Button>
           </div>
         </Col>
-        <Col sm={4} style={{ background: "#FFFFFF" }}>
+        <Col sm={4}   xs={2}>
           <div
             className={cx("header-icon")}
             // onMouseDown ={()=> setShowInputFind(true)}

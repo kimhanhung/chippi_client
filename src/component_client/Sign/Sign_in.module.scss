@@ -49,6 +49,7 @@
 }
 .input-block {
   margin-top: 7%;
+  position: relative;
 }
 .user-name,
 .user-password {
@@ -89,7 +90,10 @@
   margin: 0px 10px 0px 10px;
 }
 .forgot-pass {
-  margin-top: 9.8%;
+  display: block;
+  margin-top: 48%;
+  //  position: absolute;
+  // bottom: 0;
 }
 .text-forgot-pass {
   font-size: 14px;
@@ -97,4 +101,37 @@
   margin: 0 25% 0 25%;
   padding: 5px 0px 10px 0px;
   cursor: pointer;
+}
+//captcha
+.captcha-input{
+    display: flex;
+}
+.refresh-btn{
+    color: #000;
+}
+.input{
+    margin-right: 15px;
+    margin-bottom: 10px;
+    border: 2px solid #7366FF;
+}
+.submit{
+    color: #FFFF;
+    padding: 0px 5px 0px 5px;
+    margin-bottom: 0;
+}
+.btn-sign{
+    margin-left: 25%;
+}
+.icon{
+    background-color: transparent;
+}
+.icon-reload{
+    color: #000;
+}
+.btn-block-log-in{
+  display: block;
+  position: relative;
+  text-align: center;
+  margin-left: 27%;
+
 }

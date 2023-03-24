@@ -1,3 +1,6 @@
+.mobile-reponsive{
+  display: none;
+}
 p {
   margin-bottom: 0px;
 }
@@ -93,4 +96,38 @@ p {
 font-size: 12px;
 line-height: 14px;
  padding: 0px 25px 0px 25px;
+}
+@media (max-width: 768px) {
+  // .desktop-reponsive{
+  //   display: none;
+  // }
+  .text-btn{
+    font-size: 1rem;
+  }
+  .list-button{
+    display: none;
+  }
+  // .img-produce{
+  //   width: 200px;
+  //   height: 120px;
+  // }
+  .title{
+    // font-weight: 700;
+     font-size: 1.6rem;
+    // line-height: 29px;
+    // /* identical to box height */
+  
+    // letter-spacing: 0.5px;
+  }
+  // .produce{
+  //   width: 100%;
+  // }
+  // .produce > div {
+  //   width: 80%;
+  //   margin: auto;
+  // }
+  .produce* {
+    width: 40%;
+    margin: auto;
+  }
 }

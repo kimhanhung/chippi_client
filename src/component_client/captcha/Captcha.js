@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Button from "../../button/btn";
 import classNames from "classnames/bind";
 import styles from "../captcha/Captcha.module.scss";
+import { Navigate, useNavigate } from "react-router-dom";
 import { type } from "@testing-library/user-event/dist/type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +10,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 const cx = classNames.bind(styles);
 function Captcha() {
+  const navigate= useNavigate();
   const canvasRef = useRef(null);
   const [currentCaptcha, setCurrentCaptcha] = useState("");
   const [captchaValue, setCaptchaValue] = useState("");
@@ -61,10 +63,13 @@ function Captcha() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (captchaValue === currentCaptcha) {
+    if (captchaValue === currentCaptcha && localStorage.getItem("isLogIn")) {
       alert("Captcha chính xác!");
+      // navigate("/")
+      localStorage.setItem("captchaStatus", true)
     } else {
       alert("Nhập sai captcha!");
+      localStorage.setItem("captchaStatus", false)
       drawCaptcha();
     }
   }

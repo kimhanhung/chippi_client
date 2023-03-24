@@ -18,7 +18,7 @@ function Sign_client() {
       setShowLogIn(false);
       setShowSignUp(true);
       setActiveButton(buttonId);
-      console.log(typeof validated);
+      // console.log(typeof validated);
     };
     const handleShowSignUp = (buttonId) => {
       setShowSignUp(false);
@@ -37,6 +37,7 @@ function Sign_client() {
         <Row>
           <Col style={{ padding: "0" }}>
             <div className={cx("img")}>
+              
               <img
                 className={cx("img-background")}
                 id="img-background"

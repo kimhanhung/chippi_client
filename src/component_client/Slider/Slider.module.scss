@@ -58,3 +58,8 @@ margin-top: 3rem;
   height: 42px;
   padding: 14px 24px 14px 16px;
 }
+@media (max-width:768px) {
+  .slider-block{
+    display: none;
+  }
+}

@@ -173,3 +173,17 @@ Col {
   position: relative;
   display: inline-block;
 }
+@media (max-width:768px) {
+  .header-btn{
+    display: none;
+}
+.avatar-logo{
+  display: none;
+}
+.admin-name{
+  display: none;
+}
+// .tool{
+//   display: none;
+// }
+}

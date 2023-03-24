@@ -36,13 +36,14 @@
   position: relative;
   border-radius: 27px 0px 0px 27px;
   width: 100%;
-  height: 556.594px;
+  height: 900px;
   // min-height: 100%;
   object-fit: cover;
 }
 .sign-input {
   // background-color: bisque;
-  height: 556.594px;
+  // position: relative;
+   height: 900px;
   border-radius: 0px 27px 27px 0px;
 }
 .user-password {
@@ -73,6 +74,7 @@
   cursor: pointer;
 }
 .input-block {
+  position: relative;
   margin-top: 7%;
 }
 .user-name,
@@ -115,9 +117,12 @@
 }
 .forgot-pass {
   margin-top: 13%;
+  //   bottom: -20px;
+  // font-size: 14px;
 }
 .text-forgot-pass {
-  font-size: 14px;
+  position: absolute;
+
   border-top: 2px solid #7366ff;
   margin: 0 25% 0 25%;
   padding: 5px 0px 10px 0px;
