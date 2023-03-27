@@ -35,7 +35,7 @@ function Sign_client() {
     <div className={cx("sign")}>
       <div className={cx("sign-block")}>
         <Row>
-          <Col style={{ padding: "0" }}>
+          <Col  style={{ padding: "0" }}>
             <div className={cx("img")}>
               
               <img
@@ -45,7 +45,7 @@ function Sign_client() {
               />
             </div>
           </Col>
-          <Col style={{ padding: "0" }}>
+          <Col  style={{ padding: "0" }}>
             <div className={cx("sign-input")} id="sign">
               <div className={cx("button-sign")}>
                 <div className={cx({'text':true, 'text-boder':activeButton===1})}

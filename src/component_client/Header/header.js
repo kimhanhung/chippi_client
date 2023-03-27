@@ -51,7 +51,7 @@ const Header = () => {
             <Button className={cx("tool-btn ")}>
               <p className={cx("text")}>
                 <FontAwesomeIcon className={cx("icon-btn")} icon={faBolt} />{" "}
-                CODE TOOL THEO YÊU CẦU
+                CODE TOOL THEO YÊU CẦU 
               </p>
             </Button>
             <Button className={cx("recharge-btn header-btn-global")}>

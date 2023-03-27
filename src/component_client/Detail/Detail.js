@@ -33,12 +33,12 @@ function Detail() {
   return (
     <div className={cx("block")}>
       <Row>
-        <Col sm={7}>
+        <Col xl={7}>
           <AsNavFor />
     
         </Col>
 
-        <Col sm={5}>
+        <Col xl={5}>
           <div className={cx("infor-detail")}>
             <div className={cx("nav")}>
               <p>Sản phẩm / thiết kế</p>
