@@ -31,7 +31,7 @@
 .zalo {
   display: flex;
   justify-content: space-between;
-  margin: 0 30rem;
+  margin: 0 20rem;
   padding: 2rem 0 2rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -39,4 +39,35 @@
   font-weight: 600;
   font-size: 24px;
   line-height: 29px;
+}
+// @media (max-width: 992px) {
+//   .block{
+//     margin: 0;
+//   }
+
+// }
+@media (max-width: 992px) {
+  .block {
+    margin: 0;
+  }
+  .title {
+    font-size: 16px;
+  }
+  .sub-title,
+  .phone-number,
+  .name {
+    font-size: 14px;
+    margin: 0 3rem;
+  }
+  .facebook,
+  .zalo {
+    margin: 0 10rem;
+    font-size: 10px;
+  }
+}
+@media (max-witdh: 1200px) {
+  .facebook,
+  .zalo {
+    margin: 0 5rem;
+  }
 }

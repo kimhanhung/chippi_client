@@ -17,7 +17,7 @@ export default function SimpleSlider() {
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1920,
+        breakpoint: 1800,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -26,20 +26,20 @@ export default function SimpleSlider() {
         }
       },
       {
-        breakpoint: 1080,
+        breakpoint: 1400,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2
         }
       },
-      // {
-      //   breakpoint: 992,
-      //   settings: {
-      //     slidesToShow: 1,
-      //     slidesToScroll: 1
-      //   }
-      // }
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
     ]
   };
   function shortenText(text, maxLength) {
