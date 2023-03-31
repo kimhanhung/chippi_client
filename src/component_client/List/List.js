@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import Button from "../../button/btn";
 import classNames from "classnames/bind";
 import styles from "../List/List.module.scss";
@@ -86,8 +87,8 @@ function List() {
               </Button>
             </div>
           </div>
-          <div className={cx("list-produce")}>
-            <div className={cx("list-produce-block")}>
+          <Row  sm={2} xl={3} xxl={4} className={cx("list-produce")}>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -128,8 +129,8 @@ function List() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -170,8 +171,8 @@ function List() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -212,8 +213,8 @@ function List() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -254,8 +255,8 @@ function List() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -296,8 +297,8 @@ function List() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -338,8 +339,8 @@ function List() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       </div>
       <div className={cx("list", "mobile-reponsive")}>

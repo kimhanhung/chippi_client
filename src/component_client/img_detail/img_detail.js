@@ -25,6 +25,7 @@ export default class AsNavFor extends Component {
   render() {
     return (
       <div className={cx("block-img-detail")}>
+        <div className={cx("img-detail-desktop")}>
         <Row>
           <Col sm={3}>
             <Slider
@@ -37,6 +38,7 @@ export default class AsNavFor extends Component {
               focusOnSelect={true}
               vertical={true}
               verticalSwiping={true}
+              // adaptiveHeight={true}
             >
               <div className={cx("img-block")}>
                 <img
@@ -96,7 +98,74 @@ export default class AsNavFor extends Component {
             </Slider>
           </Col>
         </Row>
-
+        </div>
+        <div className={cx("img-detail-mobile")}>
+          <Slider
+            asNavFor={this.state.nav2}
+            ref={(slider) => (this.slider1 = slider)}
+          >
+            <div>
+              <img
+                className={cx("img-detail")}
+                src={require("../../assets/1.jpg")}
+              />
+            </div>
+            <div>
+              <img
+                className={cx("img-detail")}
+                src={require("../../assets/1.jpg")}
+              />
+            </div>
+            <div>
+              <img
+                className={cx("img-detail")}
+                src={require("../../assets/2.jpg")}
+              />
+            </div>
+            <div>
+              <img
+                className={cx("img-detail")}
+                src={require("../../assets/bk_sign.jpeg")}
+              />
+            </div>
+          </Slider>
+          <Slider
+            asNavFor={this.state.nav1}
+            ref={(slider) => (this.slider2 = slider)}
+            dots={false}
+            slidesToShow={3}
+            slidesToScroll={1}
+            swipeToSlide={true}
+            focusOnSelect={true}
+            // vertical={true}
+            // verticalSwiping={true}
+          >
+            <div className={cx("img-block")}>
+              <img
+                className={cx("sub-img-detail")}
+                src={require("../../assets/1.jpg")}
+              />
+            </div>
+            <div className={cx("img-block")}>
+              <img
+                className={cx("sub-img-detail")}
+                src={require("../../assets/1.jpg")}
+              />
+            </div>
+            <div className={cx("img-block")}>
+              <img
+                className={cx("sub-img-detail")}
+                src={require("../../assets/2.jpg")}
+              />
+            </div>
+            <div className={cx("img-block")}>
+              <img
+                className={cx("sub-img-detail")}
+                src={require("../../assets/bk_sign.jpeg")}
+              />
+            </div>
+          </Slider>
+        </div>
       </div>
     );
   }

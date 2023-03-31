@@ -10,13 +10,13 @@ function Account() {
   return (
     <div className={cx("wrapper")}>
       {/* <Row>
-        <Col sm={2}>
+        <Col xl={2}>
           <Nav />
         </Col> */}
-        {/* <Col sm={10}> */}
+        {/* <Col xl={10}> */}
           <div className={cx("container-wrapper")}>
             <Row>
-              <Col sm={4}>
+              <Col xl={4}>
                 <div className={cx("account-about")}>
                   <div className={cx("user-infor")}>
                     <div className={cx("about-img-wrap")}>
@@ -53,7 +53,7 @@ function Account() {
                   </div>
                 </div>
               </Col>
-              <Col sm={7}>
+              <Col xl={7}>
                 <div className={cx("account-infor")}>
                   <div className={cx("noti-heading")}>Thông tin cá nhân</div>
                   <div className={cx("noti-item")}>

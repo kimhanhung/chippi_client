@@ -17,7 +17,7 @@ p {
 }
 .list-button {
   display: flex;
-  margin: 0px 0px 0px 55px;
+  margin: 0 0 0 1.8em;
 }
 .btn {
   margin-right: 19px;
@@ -34,27 +34,33 @@ p {
   margin-top: 19px;
   // width: 282px;
   // height: 201px;
-  width: 17em;
-  height: 12em;
+  width: 100%;
+  height: 12.4em;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 .list-produce {
   // padding: 0px 18px 20px 30px;
   position: relative;
-  padding: 0 1em 1.2em 1.3em;
+  padding: 0 1.8em 0 1.8em;
+  margin-top: 34px;
   // padding-bottom: 3rem;
+  
 }
 .list-produce-block {
-  display: inline-block;
+  margin-top: 34px;
+  // width: 100%;
+  // display: inline-block;
   // margin: 35px 25px 0px 0px;
-  margin: 7em 1em 0em 0em;
+  // margin: 3em 1.97em 0em 0em;
   //  width: 20%;
   // justify-content: space-between;
 }
 .produce {
   display: inline-block;
   background: #ffffff;
+  width: 100%;
+  max-width: 349px;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
   // padding: 0px 28px 25px 28px;
@@ -66,7 +72,7 @@ p {
 .title {
   font-weight: 700;
  // font-size: 24px;
-  //  font-size: 1.8em;
+   font-size: 1.3em;
   line-height: 29px;
   /* identical to box height */
   letter-spacing: 0.5px;
@@ -84,7 +90,7 @@ p {
 .des {
   margin-top: 12px;
   display: block;
-  width: 270px;
+  // width: 17em;
   // font-size: 14px;
   font-size: 1em;
   line-height: 17px;

@@ -57,7 +57,7 @@
 
 .about-email{
     
-    font-size: 400;
+    font-weight: 400;
     color: var(--textColor);
 }
 
@@ -130,6 +130,7 @@
 
 .table-wrap{
     margin-top: 40px;
+    // overflow-x:scroll;
 }
 
 .btn-col{
@@ -142,4 +143,17 @@
     border-radius: 5px;
 }
 
-
+@media (max-width: 992px) {
+    .wrapper{
+        margin: 0;
+    }
+    .noti-name{
+        font-size: 1em;
+    }
+    .account-infor{
+        margin-left: 0;
+    }
+    .table-wrap{
+        overflow-x:scroll;
+    }
+}
