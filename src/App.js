@@ -15,11 +15,13 @@ import Contact_page from "./page/client/Contact/Contact_page";
 import Sign_client from "./page/client/Sign/Sign";
 import Pay_page from "./page/client/pay/Pay_page";
 import Error_not_found from "./page/client/Error/Error404";
+import ForgotPassNext from "./component_client/Sign/ForgotPassNext";
 import {  Route, Routes } from "react-router-dom";
 import Intro from "./component_client/Intro";
 import Account_page from "./page/client/Account/user_page";
 import List_page from "./page/client/listProduce/listProduce";
 import { Switch } from 'react-router-dom'
+import ForgotPass from "./component_client/Sign/ForgotPass";
 // import Detail from "./component_client/Detail/Detail";
 // import { Routes} from "react-router";
 // import { Routes, Route } from "react-router";
@@ -44,6 +46,8 @@ function App() {
         <Route path="/pay" element={<Pay_page/>} />
         <Route path="/contact" element={<Contact_page/>} />
         <Route path="/sign" element={<Sign_client/>} />
+        <Route path="/forgot" element={<ForgotPass/>} />
+        <Route path="/forgotNext" element={<ForgotPassNext/>} />
         <Route path="/intro" element={<Intro/>} />
         <Route path="/accountUser" element={<Account_page/>} />
         <Route path="*" element={<Error_not_found/>} />

@@ -99,45 +99,17 @@ function Sign_in() {
           console.log(jsonObj.status );
           if(jsonObj.status ==="success") alert("đăng nhập thành công")
           else alert("đăng nhập thất bại")
-          // console.log(1);
-          // console.log(result.status);
-          // setCheckStatus(result);
-          // if (result.status == "success") alert("đăng nhập thành công");
-          // if (result.status == "failed") alert("đăng nhập thất bại");
+    
         })
         .catch((error) => console.log("error", error));
     }
 
-    // fetch("http://localhost:8080/user/" + user.email)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.password === user.password && captcha == true) {
-    //       localStorage.setItem("isLogIn", true);
-    //       console.log(data);
-    //       // navigate("/");
-
-    //       alert("đăng nhập thành công");
-    //     } else {
-    //       if (user.email === null || user.password === null)
-    //         alert("vui lòng nhập đầy đủ thông tin");
-    //       if (data.password !== user.password) {
-    //         alert("bạn đã sai mật khẩu");
-    //         drawCaptcha();
-    //       }
-    //       if (captcha == false) {
-    //         alert("bạn đã sai captcha");
-    //         drawCaptcha();
-    //       }
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     alert("tài khoản này chưa tồn tại");
-    //     console.log(err);
-    //   });
   };
+
+
   return (
     <div className={cx("sign-in-block")}>
-      <div className={cx("input-block")}>
+      <div className={cx("input-block")} >
         <div className={cx("user-name")}>
           <p className={cx("label-user")}>Tên tài khoản</p> <br />
           <input
@@ -165,6 +137,7 @@ function Sign_in() {
           <label className={cx("label-check-book")}>ghi nhớ mật khẩu</label>
         </div>
       </div>
+     
       <div className={cx("btn")}>
         {/* <Captcha /> */}
         {/* capcha */}
@@ -198,7 +171,9 @@ function Sign_in() {
           </Button>
         </div>
       </div>
-      <div className={cx("forgot-pass")}>
+      <div className={cx("forgot-pass")}
+      onClick={()=> navigate("/forgot")}
+      >
         <p className={cx("text-forgot-pass")}>Quên mật khẩu?</p>
       </div>
     </div>

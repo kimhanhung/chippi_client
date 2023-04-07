@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import Button from "../../button/btn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Navigate, useNavigate } from "react-router-dom";
 import {
   faMagnifyingGlass,
   faBolt,
   faBell,
-  faArrowRightFromBracket,
   faChevronDown,
+  faUser,
+  faArrowRightFromBracket,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
-// import { Dropdown,DropdownButton } from "react-bootstrap";
-// import styles from"../Header/Header_client.scss";
-// import clsx from "clsx";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import classNames from "classnames/bind";
 import styles from "../Header/Header.module.scss";
+import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(styles);
 
 const Header = () => {
@@ -34,24 +33,66 @@ const Header = () => {
       return text;
     }
   }
+
+  const _handleClick = () => {
+    const nav = document.getElementById("nav");
+    nav.style.display = "block";
+  };
+
+  //Resize window
+  useEffect(() => {
+    const search = document.getElementById("search");
+    const inputSearch = document.getElementById("input-search");
+    const searchBlock = document.getElementById("search-block");
+    const handleResize = () => {
+      if (window.innerWidth < 992) {
+        search.addEventListener("click", () => {
+          inputSearch.classList.remove(cx("hide"));
+          inputSearch.classList.add(cx("show-input"));
+        });
+        inputSearch.addEventListener("mouseleave", function (event) {
+          inputSearch.classList.remove(cx("show-input"));
+          inputSearch.classList.add(cx("hide"));
+        });
+      } else {
+        searchBlock.style.display = "flex";
+      }
+    };
+    if (window.innerWidth < 992) {
+      search.addEventListener("click", () => {
+        inputSearch.classList.remove(cx("hide"));
+        inputSearch.classList.add(cx("show-input"));
+      });
+      inputSearch.addEventListener("mouseleave", function (event) {
+        inputSearch.classList.remove(cx("show-input"));
+        inputSearch.classList.add(cx("hide"));
+      });
+    } else {
+      searchBlock.style.display = "flex";
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className={cx("header")}>
-      <Row>
-        <Col sm={2}  xs={2}>
-          <div className={cx("header-logo")} onClick={() => navigate("/")}>
-            <img
-              className={cx("img-logo")}
-              src={require("../../assets/logo.jpg")}
-            />
-            <p className={cx("soft-name")}>CHIPPISOFT</p>
-          </div>
+      <Row className={cx("header-row")}>
+        <Col xs={2} className={cx("btn-nav")}>
+          <FontAwesomeIcon
+            icon={faBars}
+            className={cx("icon-nav")}
+            onClick={_handleClick}
+          />
         </Col>
-        <Col sm={6}    xs={8}>
+        {/* <Col sm={6} xs={8}>
           <div className={cx("header-btn")}>
             <Button className={cx("tool-btn ")}>
               <p className={cx("text")}>
                 <FontAwesomeIcon className={cx("icon-btn")} icon={faBolt} />{" "}
-                CODE TOOL THEO YÊU CẦU 
+                CODE TOOL THEO YÊU CẦU
               </p>
             </Button>
             <Button className={cx("recharge-btn header-btn-global")}>
@@ -61,27 +102,19 @@ const Header = () => {
               </p>
             </Button>
           </div>
-        </Col>
-        <Col sm={4}   xs={2}>
-          <div
-            className={cx("header-icon")}
-            // onMouseDown ={()=> setShowInputFind(true)}
-            // onMouseLeave ={()=>setShowInputFind(false)}
-          >
-            <div
-              className={cx("input-block")}
-              onMouseDown={() => setShowInputFind(true)}
-              onMouseLeave={() => setShowInputFind(false)}
-            >
+        </Col> */}
+        <Col sm={10} xs={10} style={{ padding: "0px" }}>
+          <div className={cx("header-icon")}>
+            <div className={cx("input-block")} id="search-block">
               <input
-                className={cx(
-                  `${showInputFind ? "input-find" : "not-input-find"}`
-                )}
+                className={cx("search")}
                 placeholder="Tìm kiếm"
+                id="input-search"
               />
               <FontAwesomeIcon
-                className={cx("icon")}
+                className={cx("icon-search")}
                 icon={faMagnifyingGlass}
+                id="search"
               />
             </div>
 
@@ -90,7 +123,10 @@ const Header = () => {
               onMouseDown={() => setShowDropdownNotification(true)}
               onMouseLeave={() => setShowDropdownNotification(false)}
             >
-              <FontAwesomeIcon className={cx("icon")} icon={faBell} />
+              <FontAwesomeIcon
+                className={cx("icon", "icon-notification")}
+                icon={faBell}
+              />
               <div
                 className={cx(
                   `${showDropdownNotification ? "show" : "not-show"}`
@@ -114,9 +150,6 @@ const Header = () => {
                   <li className={cx("hower-li-noti")}>Thông báo 3: admin</li>
                   <li className={cx("hower-li-noti")}>Thông báo 2</li>
                 </ul>
-                {/* <Dropdown.Item href="#/action-1">Action 1</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Action 2</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Action 3</Dropdown.Item> */}
               </div>
             </div>
 

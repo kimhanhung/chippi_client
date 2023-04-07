@@ -10,7 +10,7 @@ import Button from "../../../button/btn";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import classNames from "classnames/bind";
-import styles from "./ListProduce.module.scss";
+import styles from "../Page.module.scss";
 
 const cx = classNames.bind(styles);
 function List_page() {
@@ -20,11 +20,11 @@ function List_page() {
         <Header />
       </Row>
       <Row style={{ margin: "0px" }}>
-        <Col sm={2} style={{ padding: "0px" }}>
+        <Col lg={2} style={{ padding: "0px" }}>
           <Nav />
         </Col>
 
-        <Col sm={10}>
+        <Col lg={10}>
           <div className={cx("content")}>
             <List />
             <Transaction />

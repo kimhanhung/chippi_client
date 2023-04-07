@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import Button from "../../button/btn";
 import classNames from "classnames/bind";
 import styles from "../List/List.module.scss";
 const cx = classNames.bind(styles);
 
-function List() {
+function List() { const navigate = useNavigate();
   function shortenText(text, maxLength) {
     if (text.length > maxLength) {
       return text.substring(0, maxLength - 3) + "...";
@@ -13,16 +14,17 @@ function List() {
       return text;
     }
   }
+
   // const [buttonStates, setButtonStates] = useState([
-  //   "primary-hover-btn",
-  //   "primary-btn",
-  //   "primary-btn",
-  //   "primary-btn",
+  //   "btn-buy-now",
+  //   "btn-see-detail",
+  //   "btn-see-detail",
+  //   "btn-see-detail",
   // ]);
   // const buttonClick = (index) => {
   //   const newButtonStates = buttonStates.map((buttonState, i) => {
   //     // console.log(buttonState);
-  //     return i === index ? "primary-hover-btn" : "primary-btn";
+  //     return i === index ? "btn-buy-now" : "btn-see-detail";
   //   });
 
   //   setButtonStates(newButtonStates);
@@ -39,55 +41,72 @@ function List() {
           <div className={cx("list-button")}>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 1 })}
-               onClick={() => handleButtonClick(1)}
-             
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 1,
+                })}
+                onClick={() => handleButtonClick(1)}
               >
                 <p className={cx("text-btn")}>Tất cả</p>
               </Button>
             </div>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 2 })}
-               onClick={() => handleButtonClick(2)}
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 2,
+                })}
+                onClick={() => handleButtonClick(2)}
               >
                 <p className={cx("text-btn")}>Tool thiết kế</p>
               </Button>
             </div>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 3 })}
-               onClick={() => handleButtonClick(3)}
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 3,
+                })}
+                onClick={() => handleButtonClick(3)}
               >
                 <p className={cx("text-btn")}>Tool facebook</p>
               </Button>
             </div>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 4})}
-               onClick={() => handleButtonClick(4)}
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 4,
+                })}
+                onClick={() => handleButtonClick(4)}
               >
                 <p className={cx("text-btn")}>Tool zalo</p>
               </Button>
             </div>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 5})}
-               onClick={() => handleButtonClick(5)}
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 5,
+                })}
+                onClick={() => handleButtonClick(5)}
               >
                 <p className={cx("text-btn")}>Giải captcha</p>
               </Button>
             </div>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 6})}
-               onClick={() => handleButtonClick(6)}
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 6,
+                })}
+                onClick={() => handleButtonClick(6)}
               >
                 <p className={cx("text-btn")}>Tool twitter</p>
               </Button>
             </div>
           </div>
-          <Row  sm={2} xl={3} xxl={4} className={cx("list-produce")}>
+          <Row sm={2} xl={3} xxl={4} className={cx("list-produce")}>
             <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
@@ -116,16 +135,26 @@ function List() {
                     </p>
                   </div>
                   <div className={cx("block-btn")}>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
-                        <p className={cx("text-produce-btn")}>Xem chi tiết</p>
-                      </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-hover-btn")}>
-                        <p className={cx("text-produce-btn")}>Mua ngay</p>
-                      </Button>
-                    </div>
+                    <Row>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-see-detail")}
+                          onClick={()=> navigate("/detail")}
+                          >
+                            <p className={cx("text-produce-btn")}>
+                              Xem chi tiết
+                            </p>
+                          </Button>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-buy-now")}>
+                            <p className={cx("text-produce-btn")}>Mua ngay</p>
+                          </Button>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
               </div>
@@ -158,16 +187,24 @@ function List() {
                     </p>
                   </div>
                   <div className={cx("block-btn")}>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
-                        <p className={cx("text-produce-btn")}>Xem chi tiết</p>
-                      </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-hover-btn")}>
-                        <p className={cx("text-produce-btn")}>Mua ngay</p>
-                      </Button>
-                    </div>
+                    <Row>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-see-detail")}>
+                            <p className={cx("text-produce-btn")}>
+                              Xem chi tiết
+                            </p>
+                          </Button>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-buy-now")}>
+                            <p className={cx("text-produce-btn")}>Mua ngay</p>
+                          </Button>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
               </div>
@@ -200,16 +237,24 @@ function List() {
                     </p>
                   </div>
                   <div className={cx("block-btn")}>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
-                        <p className={cx("text-produce-btn")}>Xem chi tiết</p>
-                      </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-hover-btn")}>
-                        <p className={cx("text-produce-btn")}>Mua ngay</p>
-                      </Button>
-                    </div>
+                    <Row>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-see-detail")}>
+                            <p className={cx("text-produce-btn")}>
+                              Xem chi tiết
+                            </p>
+                          </Button>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-buy-now")}>
+                            <p className={cx("text-produce-btn")}>Mua ngay</p>
+                          </Button>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
               </div>
@@ -242,16 +287,24 @@ function List() {
                     </p>
                   </div>
                   <div className={cx("block-btn")}>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
-                        <p className={cx("text-produce-btn")}>Xem chi tiết</p>
-                      </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-hover-btn")}>
-                        <p className={cx("text-produce-btn")}>Mua ngay</p>
-                      </Button>
-                    </div>
+                    <Row>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-see-detail")}>
+                            <p className={cx("text-produce-btn")}>
+                              Xem chi tiết
+                            </p>
+                          </Button>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-buy-now")}>
+                            <p className={cx("text-produce-btn")}>Mua ngay</p>
+                          </Button>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
               </div>
@@ -284,16 +337,24 @@ function List() {
                     </p>
                   </div>
                   <div className={cx("block-btn")}>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
-                        <p className={cx("text-produce-btn")}>Xem chi tiết</p>
-                      </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-hover-btn")}>
-                        <p className={cx("text-produce-btn")}>Mua ngay</p>
-                      </Button>
-                    </div>
+                    <Row>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-see-detail")}>
+                            <p className={cx("text-produce-btn")}>
+                              Xem chi tiết
+                            </p>
+                          </Button>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-buy-now")}>
+                            <p className={cx("text-produce-btn")}>Mua ngay</p>
+                          </Button>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
               </div>
@@ -326,25 +387,30 @@ function List() {
                     </p>
                   </div>
                   <div className={cx("block-btn")}>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
-                        <p className={cx("text-produce-btn")}>Xem chi tiết</p>
-                      </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-hover-btn")}>
-                        <p className={cx("text-produce-btn")}>Mua ngay</p>
-                      </Button>
-                    </div>
+                    <Row>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-see-detail")}>
+                            <p className={cx("text-produce-btn")}>
+                              Xem chi tiết
+                            </p>
+                          </Button>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className={cx("produce-btn")}>
+                          <Button className={cx("btn-buy-now")}>
+                            <p className={cx("text-produce-btn")}>Mua ngay</p>
+                          </Button>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
               </div>
             </Col>
           </Row>
         </div>
-      </div>
-      <div className={cx("list", "mobile-reponsive")}>
-        
       </div>
     </>
   );

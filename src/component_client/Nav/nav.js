@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./Nav.module.scss";
 import {
   faDollarSign,
+  faCodePullRequest,
   faGauge,
   faChevronDown,
   faLock,
@@ -12,37 +13,44 @@ import {
   faRug,
   faBell,
   faGear,
+  faBolt,
+  faX,
+  faChevronCircleLeft,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { faClipboard } from "@fortawesome/free-regular-svg-icons";
+import { faClipboard, faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Navigate, useNavigate } from "react-router-dom";
-// import ReactDOM from "react-dom/client";
+import { Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import Button from "../../button/btn";
+import { useEffect } from "react";
 
 const cx = classNames.bind(styles);
-function Nav() {
+function Nav(props) {
   const navigate = useNavigate();
-  const [clickState, showClickState] = "";
-  const handleClick = (event) => {
+
+  // handleClick
+  const handleClick = (event, name) => {
+    event.preventDefault();
     const elementClicked = event.target;
-    console.log(elementClicked);
     const elementId = elementClicked.id;
-    const element = document.getElementsByClassName("Nav_nav-item__CP5be");
+    console.log(elementId);
     if (elementId) {
-      console.log(element);
-      console.log(elementId);
+      const element = document.getElementsByClassName("nav-item");
       for (let i = 0; i < element.length; i++) {
         element[i].classList.remove(cx("active"));
-        console.log(i);
       }
-      document.getElementById(elementId).classList.add(cx("active"));
+      document.getElementById(`${elementId}-wrap`).classList.add(cx("active"));
     }
+    navigate(`/${name}`);
   };
+
   const handleClickSubMenu = (event) => {
     const elementClicked = event.target;
     const elementId = elementClicked.id;
-    let menuId = `${elementId}-sub-menu`;
-
+    console.log(elementId);
     if (elementId) {
+      let menuId = `${elementId}-sub-menu`;
       document
         .getElementById(elementId)
         .classList.toggle(cx("active-btn-down"));
@@ -51,230 +59,287 @@ function Nav() {
         document.getElementById(menuId).style.display === ""
       ) {
         document.getElementById(menuId).style.display = "block";
-      } else document.getElementById(menuId).style.display = "none";
+        localStorage.setItem(`${menuId}`, true);
+      } else {
+        document.getElementById(menuId).style.display = "none";
+        localStorage.removeItem(`${menuId}`);
+      }
     }
   };
 
+  const _handleClose = () => {
+    document.getElementById("nav").style.display = "none";
+  };
+  // Resize window
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 992) {
+        document.getElementById("nav").classList.add(cx("open"));
+      }
+      // } else {
+      //   document.getElementById("nav").classList.add(cx("open"));
+      // }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Clean up localStorage
+  useEffect(() => {
+    const cleanupLocalStorage = () => {
+      const storageItem = ["product-btn-sub-menu", "history-btn-sub-menu"];
+      storageItem.forEach((item) => localStorage.removeItem(item));
+    };
+
+    window.addEventListener("beforeunload", cleanupLocalStorage);
+
+    return () => {
+      window.removeEventListener("beforeunload", cleanupLocalStorage);
+    };
+  }, []);
+
   return (
-    <div className={cx("wrapper")}>
-      <div className={cx("nav-list", "desktop-reponsive")}>
-        <li className={cx("nav-item", "fade")} id="product">
-          <div className={cx("item-wrap", "nav-item-down")}>
+    <nav className={cx("wrapper")} id="nav">
+      <div className={cx("nav-top")}>
+        <div className={cx("nav-chippi")}
+        onClick={()=>navigate("/")}
+        >
+          <div className={cx("nav-top-logo")}>
+            <img
+              className={cx("nav-top-logo-img")}
+              src={require("../../assets/logo.jpg")}
+            />
+          </div>
+          <div className={cx("nav-top-name")}>CHIPPISOFT </div>
+        </div>
+
+        <FontAwesomeIcon
+          icon={faChevronLeft}
+          id="nav-close"
+          className={cx("nav-close")}
+          onClick={_handleClose}
+        />
+      </div>
+
+      <div className={cx("nav-list")}>
+        <li className="nav-item" id="pd-wrap">
+          <div className={cx("item-wrap", "nav-item-down")}
+           onClick={()=> navigate("/list")}
+          >
             <div
               className={cx("nav-item-left")}
-              onClick={() => navigate("/list")}
+             
             >
               <FontAwesomeIcon
                 icon={faBarsStaggered}
                 className={cx("nav-icon")}
               />
-              <div className={cx("nav-item-name")}>Sản phẩm</div>
+              <div className={cx("nav-item-name")} id="pd">
+                Sản phẩm
+              </div>
             </div>
+
             <div>
               <FontAwesomeIcon
                 icon={faChevronDown}
-                className={cx("nav-icon", "icon-down")}
+                // className={cx("nav-icon", "icon-down")}
+                className={
+                  localStorage.getItem("product-btn-sub-menu")
+                    ? cx("nav-icon", "icon-down", "active-btn-down")
+                    : cx("nav-icon", "icon-down")
+                }
                 id="product-btn"
                 onClick={handleClickSubMenu}
               />
             </div>
           </div>
         </li>
-        <div className={cx("nav-item-sub", "fade")} id="product-btn-sub-menu">
+        <div
+          className={cx("nav-item-sub")}
+          id="product-btn-sub-menu"
+          style={
+            localStorage.getItem("product-btn-sub-menu")
+              ? { display: "block" }
+              : { display: "none" }
+          }
+        >
           <li
-            className={cx("sub-item-wrap", "nav-item", "fade")}
-            id="type"
-            onClick={handleClick}
+            className={`nav-item ${
+              props.path === "product/category" ? cx("active") : ""
+            } `}
+            id="type-wrap"
           >
-            <div className={cx("sub-item")}>Thiết kế</div>
+            <div className={cx("sub-item")}>
+              <a
+                href="/product/category"
+                className={cx("sub-item-link")}
+                onClick={(event) => handleClick(event, "product/category")}
+                id="type"
+              >
+                Chuyên mục
+              </a>
+            </div>
           </li>
           <li
-            className={cx("sub-item-wrap", "nav-item", "fade")}
-            id="list"
-            onClick={handleClick}
+            className={`nav-item ${
+              props.path === "product/list" ? cx("active") : ""
+            } `}
+            id="list-wrap"
           >
-            <div className={cx("sub-item")}>Tool facebook</div>
+            <div className={cx("sub-item")}>
+              <a
+                href="/product/list"
+                className={cx("sub-item-link")}
+                id="list"
+                onClick={(event) => handleClick(event, "product/list")}
+              >
+                Danh sách sản phẩm
+              </a>
+            </div>
           </li>
           <li
-            className={cx("sub-item-wrap", "nav-item", "fade")}
-            id="order"
-            onClick={handleClick}
+            className={`nav-item ${
+              props.path === "product/order" ? cx("active") : ""
+            } `}
+            id="order-wrap"
           >
-            <div className={cx("sub-item")}>Tool zalo</div>
-          </li>
-          <li
-            className={cx("sub-item-wrap", "nav-item", "fade")}
-            id="order"
-            onClick={handleClick}
-          >
-            <div className={cx("sub-item")}>Giải capcha</div>
-          </li>
-          <li
-            className={cx("sub-item-wrap", "nav-item", "fade")}
-            id="order"
-            onClick={handleClick}
-          >
-            <div className={cx("sub-item")}>Tool twitter</div>
+            <div className={cx("sub-item")}>
+              <a
+                href="/product/order"
+                className={cx("sub-item-link")}
+                id="order"
+                onClick={(event) => handleClick(event, "product/order")}
+              >
+                Đơn hàng
+              </a>
+            </div>
           </li>
         </div>
         <li
-          className={cx("nav-item", "fade")}
-          id="sercurity"
-          onClick={handleClick}
+          className={`nav-item ${props.path === "member" ? cx("active") : ""} `}
+          id="mb-wrap"
         >
-          <div className={cx("item-wrap")} onClick={() => navigate("/pay")}>
+          <div className={cx("item-wrap")}>
             <FontAwesomeIcon icon={faDollarSign} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Nạp tiền</div>
+            <a
+              href="/member"
+              className={cx("nav-item-name")}
+              id="mb"
+              onClick={(event) => handleClick(event, "pay")}
+            >
+              Nạp tiền
+            </a>
           </div>
         </li>
-
-        <li className={cx("nav-item", "fade")} id="history">
-          <div className={cx("item-wrap", "nav-item-down")}>
-            <div
-              className={cx("nav-item-left")}
-              onClick={() => navigate("/listPost")}
-            >
+        <li className="nav-item" id="ht-wrap">
+          <div className={cx("item-wrap", "nav-item-down")}
+          
+          onClick={()=> navigate("/listPost")}
+          >
+            <div className={cx("nav-item-left")}>
               <FontAwesomeIcon icon={faClipboard} className={cx("nav-icon")} />
-              <div className={cx("nav-item-name")}>Bài viết</div>
+              <div className={cx("nav-item-name")} id="ht">
+                Bài viết
+              </div>
             </div>
             <div>
               <FontAwesomeIcon
                 icon={faChevronDown}
-                className={cx("nav-icon", "icon-down")}
+                className={
+                  localStorage.getItem("history-btn-sub-menu")
+                    ? cx("nav-icon", "icon-down", "active-btn-down")
+                    : cx("nav-icon", "icon-down")
+                }
                 id="history-btn"
                 onClick={handleClickSubMenu}
               />
             </div>
           </div>
         </li>
-        <div className={cx("nav-item-sub", "fade")} id="history-btn-sub-menu">
+        <div
+          className={cx("nav-item-sub")}
+          id="history-btn-sub-menu"
+          style={
+            localStorage.getItem("history-btn-sub-menu")
+              ? { display: "block" }
+              : { display: "none" }
+          }
+        >
           <li
-            className={cx("sub-item-wrap", "nav-item", "fade")}
-            id="type"
-            onClick={handleClick}
+            className={`nav-item ${
+              props.path === "activity" ? cx("active") : ""
+            } `}
+            id="activity-wrap"
           >
-            <div className={cx("sub-item")}>Thiết kế</div>
+            <div className={cx("sub-item")}>
+              <a
+                href="/activity"
+                className={cx("sub-item-link")}
+                id="activity"
+                onClick={(event) => handleClick(event, "activity")}
+              >
+                Nhật ký hoạt động
+              </a>
+            </div>
           </li>
           <li
-            className={cx("sub-item-wrap", "nav-item", "fade")}
-            id="list"
-            onClick={handleClick}
+            className={`nav-item ${
+              props.path === "balance" ? cx("active") : ""
+            } `}
+            id="balance-wrap"
           >
-            <div className={cx("sub-item")}>Game</div>
-          </li>
-          <li
-            className={cx("sub-item-wrap", "nav-item", "fade")}
-            id="list"
-            onClick={handleClick}
-          >
-            <div className={cx("sub-item")}>Văn phòng</div>
+            <div className={cx("sub-item")}>
+              <a
+                href="/balance"
+                className={cx("sub-item-link")}
+                id="balance"
+                onClick={(event) => handleClick(event, "balance")}
+              >
+                Biến động số dư
+              </a>
+            </div>
           </li>
         </div>
+
         <li
-          className={cx("nav-item", "fade")}
-          id="members"
-          onClick={handleClick}
+          className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
+          id="p-wrap"
         >
-          <div className={cx("item-wrap")} onClick={() => navigate("/contact")}>
-            <FontAwesomeIcon icon={faUsers} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Liên hệ</div>
-          </div>
-        </li>
-        {/* <li className={cx("nav-item", "fade")} id="pay" onClick={handleClick}>
           <div className={cx("item-wrap")}>
-            <FontAwesomeIcon icon={faCreditCard} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Phương thức thanh toán</div>
-          </div>
-        </li>
-        <li className={cx("nav-item", "fade")} id="posts" onClick={handleClick}>
-          <div className={cx("item-wrap")}>
-            {" "}
-            <FontAwesomeIcon icon={faClipboard} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Bài viết</div>
+            <FontAwesomeIcon icon={faUser} className={cx("nav-icon")} />
+            <a
+              href="/pay"
+              className={cx("nav-item-name")}
+              id="p"
+              onClick={(event) => handleClick(event, "contact")}
+            >
+              Liên hệ
+            </a>
           </div>
         </li>
         <li
-          className={cx("nav-item", "fade")}
-          id="discount"
-          onClick={handleClick}
+          className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
+          id="p-wrap"
         >
           <div className={cx("item-wrap")}>
-            <FontAwesomeIcon icon={faRug} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Khuyến mãi/ Giảm giá</div>
-          </div>
-        </li>
-        <li className={cx("nav-item", "fade")} id="noti" onClick={handleClick}>
-          <div className={cx("item-wrap")}>
-            <FontAwesomeIcon icon={faBell} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Thông báo</div>
-          </div>
-        </li>
-        <li
-          className={cx("nav-item", "fade")}
-          id="setting"
-          onClick={handleClick}
-        >
-          <div className={cx("item-wrap")}>
-            <FontAwesomeIcon icon={faGear} className={cx("nav-icon")} />
-            <div className={cx("nav-item-name")}>Cài đặt</div>
-          </div>
-        </li> */}
-      </div>
-      <div className={cx("nav-list", "mobile-reponsive")}>
-        <li className={cx("nav-item", "fade")} id="product">
-          <div className={cx("item-wrap", "nav-item-down")}>
-            <div
-              className={cx("nav-item-left")}
-              onClick={() => navigate("/list")}
+            <FontAwesomeIcon
+              icon={faCodePullRequest}
+              className={cx("nav-icon")}
+            />
+            <a
+              href="/pay"
+              className={cx("nav-item-name")}
+              id="p"
+              onClick={(event) => handleClick(event, "")}
             >
-              <FontAwesomeIcon
-                icon={faBarsStaggered}
-                className={cx("nav-icon")}
-              />
-            </div>
-          </div>
-        </li>
-        <li className={cx("nav-item", "fade")} id="product">
-          <div className={cx("item-wrap", "nav-item-down")}>
-            <div
-              className={cx("nav-item-left")}
-              onClick={() => navigate("/list")}
-            >
-              <FontAwesomeIcon
-                icon={faDollarSign}
-                className={cx("nav-icon")}
-              />
-            </div>
-          </div>
-        </li>
-        <li className={cx("nav-item", "fade")} id="product">
-          <div className={cx("item-wrap", "nav-item-down")}>
-            <div
-              className={cx("nav-item-left")}
-              onClick={() => navigate("/list")}
-            >
-              <FontAwesomeIcon
-                icon={faClipboard}
-                className={cx("nav-icon")}
-              />
-            </div>
-          </div>
-        </li>
-        <li className={cx("nav-item", "fade")} id="product">
-          <div className={cx("item-wrap", "nav-item-down")}>
-            <div
-              className={cx("nav-item-left")}
-              onClick={() => navigate("/list")}
-            >
-              <FontAwesomeIcon
-                icon={faUsers}
-                className={cx("nav-icon")}
-              />
-            </div>
+              Code tool theo yêu cầu
+            </a>
           </div>
         </li>
       </div>
-    </div>
+    </nav>
   );
 }
 

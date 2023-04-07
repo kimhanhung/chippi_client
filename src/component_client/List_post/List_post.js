@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Button from "../../button/btn";
 import classNames from "classnames/bind";
 import styles from "../List_post/List_post.module.scss";
 const cx = classNames.bind(styles);
 
 function List_post() {
+  const navigate = useNavigate();
   function shortenText(text, maxLength) {
     if (text.length > maxLength) {
       return text.substring(0, maxLength - 3) + "...";
@@ -33,45 +36,78 @@ function List_post() {
   };
   return (
     <>
-      <div className={cx("list")}>
+      <div className={cx("list", "desktop-reponsive")}>
         <div className={cx("list-block")}>
           <div className={cx("list-button")}>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 1 })}
-               onClick={() => handleButtonClick(1)}
-             
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 1,
+                })}
+                onClick={() => handleButtonClick(1)}
               >
                 <p className={cx("text-btn")}>Tất cả</p>
               </Button>
             </div>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 2 })}
-               onClick={() => handleButtonClick(2)}
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 2,
+                })}
+                onClick={() => handleButtonClick(2)}
               >
-                <p className={cx("text-btn")}>Thiết kế</p>
+                <p className={cx("text-btn")}>Tool thiết kế</p>
               </Button>
             </div>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 3 })}
-               onClick={() => handleButtonClick(3)}
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 3,
+                })}
+                onClick={() => handleButtonClick(3)}
               >
-                <p className={cx("text-btn")}>Game</p>
+                <p className={cx("text-btn")}>Tool facebook</p>
               </Button>
             </div>
             <div className={cx("btn")}>
               <Button
-               className={cx({ 'primary-btn': true, 'primary-hover-btn': activeButton === 4})}
-               onClick={() => handleButtonClick(4)}
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 4,
+                })}
+                onClick={() => handleButtonClick(4)}
               >
-                <p className={cx("text-btn")}>Văn phòng</p>
+                <p className={cx("text-btn")}>Tool zalo</p>
+              </Button>
+            </div>
+            <div className={cx("btn")}>
+              <Button
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 5,
+                })}
+                onClick={() => handleButtonClick(5)}
+              >
+                <p className={cx("text-btn")}>Giải captcha</p>
+              </Button>
+            </div>
+            <div className={cx("btn")}>
+              <Button
+                className={cx({
+                  "btn-see-detail": true,
+                  "btn-buy-now": activeButton === 6,
+                })}
+                onClick={() => handleButtonClick(6)}
+              >
+                <p className={cx("text-btn")}>Tool twitter</p>
               </Button>
             </div>
           </div>
-          <div className={cx("list-produce")}>
-            <div className={cx("list-produce-block")}>
+          <Row sm={2} xl={3} xxl={4} className={cx("list-produce")}>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -80,13 +116,11 @@ function List_post() {
                   />
                   <div className={cx("infor")}>
                     <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("author-view-block")}>
-                      <label className={cx("author")}>
-                        ADMIN 
-                      </label>
-                      <label className={cx("view")}>
+                    <div className={cx("admin-block")}>
+                      <label className={cx("admin")}>ADMIN</label>
+                      <label className={cx("bought")}>
                         {" "}
-                        Lượt đọc <label className="view">25</label>{" "}
+                        Lượt đọc: <label className="bought">25</label>{" "}
                       </label>
                     </div>
 
@@ -100,18 +134,17 @@ function List_post() {
                   </div>
                   <div className={cx("block-btn")}>
                     <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
+                      <Button className={cx("btn-see-detail")}
+                      onClick={()=> navigate("/post")}
+                      >
                         <p className={cx("text-produce-btn")}>Xem chi tiết</p>
                       </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -120,13 +153,11 @@ function List_post() {
                   />
                   <div className={cx("infor")}>
                     <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("author-view-block")}>
-                      <label className={cx("author")}>
-                        ADMIN 
-                      </label>
-                      <label className={cx("view")}>
+                    <div className={cx("admin-block")}>
+                      <label className={cx("admin")}>ADMIN</label>
+                      <label className={cx("bought")}>
                         {" "}
-                        Lượt đọc <label className="view">25</label>{" "}
+                        Lượt đọc: <label className="bought">25</label>{" "}
                       </label>
                     </div>
 
@@ -140,18 +171,15 @@ function List_post() {
                   </div>
                   <div className={cx("block-btn")}>
                     <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
+                      <Button className={cx("btn-see-detail")}>
                         <p className={cx("text-produce-btn")}>Xem chi tiết</p>
                       </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -160,13 +188,11 @@ function List_post() {
                   />
                   <div className={cx("infor")}>
                     <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("author-view-block")}>
-                      <label className={cx("author")}>
-                        ADMIN 
-                      </label>
-                      <label className={cx("view")}>
+                    <div className={cx("admin-block")}>
+                      <label className={cx("admin")}>ADMIN</label>
+                      <label className={cx("bought")}>
                         {" "}
-                        Lượt đọc <label className="view">25</label>{" "}
+                        Lượt đọc: <label className="bought">25</label>{" "}
                       </label>
                     </div>
 
@@ -180,18 +206,18 @@ function List_post() {
                   </div>
                   <div className={cx("block-btn")}>
                     <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
+                      <Button className={cx("btn-see-detail")}>
                         <p className={cx("text-produce-btn")}>Xem chi tiết</p>
                       </Button>
                     </div>
-                    <div className={cx("produce-btn")}>
 
-                    </div>
+                    {/*
+                     */}
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -200,13 +226,11 @@ function List_post() {
                   />
                   <div className={cx("infor")}>
                     <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("author-view-block")}>
-                      <label className={cx("author")}>
-                        ADMIN 
-                      </label>
-                      <label className={cx("view")}>
+                    <div className={cx("admin-block")}>
+                      <label className={cx("admin")}>ADMIN</label>
+                      <label className={cx("bought")}>
                         {" "}
-                        Lượt đọc <label className="view">25</label>{" "}
+                        Lượt đọc: <label className="bought">25</label>{" "}
                       </label>
                     </div>
 
@@ -220,18 +244,15 @@ function List_post() {
                   </div>
                   <div className={cx("block-btn")}>
                     <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
+                      <Button className={cx("btn-see-detail")}>
                         <p className={cx("text-produce-btn")}>Xem chi tiết</p>
                       </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -240,13 +261,11 @@ function List_post() {
                   />
                   <div className={cx("infor")}>
                     <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("author-view-block")}>
-                      <label className={cx("author")}>
-                        ADMIN 
-                      </label>
-                      <label className={cx("view")}>
+                    <div className={cx("admin-block")}>
+                      <label className={cx("admin")}>ADMIN</label>
+                      <label className={cx("bought")}>
                         {" "}
-                        Lượt đọc <label className="view">25</label>{" "}
+                        Lượt đọc: <label className="bought">25</label>{" "}
                       </label>
                     </div>
 
@@ -260,18 +279,15 @@ function List_post() {
                   </div>
                   <div className={cx("block-btn")}>
                     <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
+                      <Button className={cx("btn-see-detail")}>
                         <p className={cx("text-produce-btn")}>Xem chi tiết</p>
                       </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={cx("list-produce-block")}>
+            </Col>
+            <Col className={cx("list-produce-block")}>
               <div className={cx("produce")}>
                 <div className={cx("produce-element")}>
                   <img
@@ -280,13 +296,11 @@ function List_post() {
                   />
                   <div className={cx("infor")}>
                     <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("author-view-block")}>
-                      <label className={cx("author")}>
-                        ADMIN 
-                      </label>
-                      <label className={cx("view")}>
+                    <div className={cx("admin-block")}>
+                      <label className={cx("admin")}>ADMIN</label>
+                      <label className={cx("bought")}>
                         {" "}
-                        Lượt đọc <label className="view">25</label>{" "}
+                        Lượt đọc: <label className="bought">25</label>{" "}
                       </label>
                     </div>
 
@@ -300,18 +314,15 @@ function List_post() {
                   </div>
                   <div className={cx("block-btn")}>
                     <div className={cx("produce-btn")}>
-                      <Button className={cx("primary-btn")}>
+                      <Button className={cx("btn-see-detail")}>
                         <p className={cx("text-produce-btn")}>Xem chi tiết</p>
                       </Button>
-                    </div>
-                    <div className={cx("produce-btn")}>
-
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       </div>
     </>
