@@ -172,9 +172,13 @@ function Sign_in() {
         </div>
       </div>
       <div className={cx("forgot-pass")}
-      onClick={()=> navigate("/forgot")}
+      // onClick={()=> navigate("/forgot")}
       >
-        <p className={cx("text-forgot-pass")}>Quên mật khẩu?</p>
+        <a 
+        href="https://chippisoft.com/Pages/Forgotpass.php"
+        className={cx("link-to-forgot")} 
+        > <p className={cx("text-forgot-pass")}>Quên mật khẩu?</p></a>
+       
       </div>
     </div>
   );

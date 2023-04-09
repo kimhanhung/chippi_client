@@ -124,9 +124,11 @@ function Nav(props) {
       </div>
 
       <div className={cx("nav-list")}>
-        <li className="nav-item" id="pd-wrap">
+        <li className="nav-item" id="pd-wrap"
+        
+        >
           <div className={cx("item-wrap", "nav-item-down")}
-           onClick={()=> navigate("/list")}
+          //  onClick={()=> navigate("/list")}
           >
             <div
               className={cx("nav-item-left")}
@@ -167,50 +169,35 @@ function Nav(props) {
         >
           <li
             className={`nav-item ${
-              props.path === "product/category" ? cx("active") : ""
-            } `}
-            id="type-wrap"
-          >
-            <div className={cx("sub-item")}>
-              <a
-                href="/product/category"
-                className={cx("sub-item-link")}
-                onClick={(event) => handleClick(event, "product/category")}
-                id="type"
-              >
-                Chuyên mục
-              </a>
-            </div>
-          </li>
-          <li
-            className={`nav-item ${
-              props.path === "product/list" ? cx("active") : ""
+              props.path === "list" ? cx("active") : ""
             } `}
             id="list-wrap"
           >
-            <div className={cx("sub-item")}>
+            <div className={cx("sub-item")}
+            onClick={(event) => handleClick(event, "list")}
+            >
               <a
-                href="/product/list"
+                href="/list"
                 className={cx("sub-item-link")}
                 id="list"
-                onClick={(event) => handleClick(event, "product/list")}
+                // onClick={(event) => handleClick(event, "product/list")}
               >
-                Danh sách sản phẩm
+               Chuyên mục
               </a>
             </div>
           </li>
           <li
             className={`nav-item ${
-              props.path === "product/order" ? cx("active") : ""
+              props.path === "order" ? cx("active") : ""
             } `}
             id="order-wrap"
           >
-            <div className={cx("sub-item")}>
+            <div className={cx("sub-item")}onClick={(event) => handleClick(event, "order")}>
               <a
                 href="/product/order"
                 className={cx("sub-item-link")}
                 id="order"
-                onClick={(event) => handleClick(event, "product/order")}
+                
               >
                 Đơn hàng
               </a>
@@ -218,7 +205,7 @@ function Nav(props) {
           </li>
         </div>
         <li
-          className={`nav-item ${props.path === "member" ? cx("active") : ""} `}
+          className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
           id="mb-wrap"
         >
           <div className={cx("item-wrap")}>
@@ -233,7 +220,9 @@ function Nav(props) {
             </a>
           </div>
         </li>
-        <li className="nav-item" id="ht-wrap">
+        <li 
+         className={`nav-item ${props.path === "listPost" ? cx("active") : ""} `}
+        id="ht-wrap">
           <div className={cx("item-wrap", "nav-item-down")}
           
           onClick={()=> navigate("/listPost")}
@@ -244,67 +233,10 @@ function Nav(props) {
                 Bài viết
               </div>
             </div>
-            <div>
-              <FontAwesomeIcon
-                icon={faChevronDown}
-                className={
-                  localStorage.getItem("history-btn-sub-menu")
-                    ? cx("nav-icon", "icon-down", "active-btn-down")
-                    : cx("nav-icon", "icon-down")
-                }
-                id="history-btn"
-                onClick={handleClickSubMenu}
-              />
-            </div>
           </div>
         </li>
-        <div
-          className={cx("nav-item-sub")}
-          id="history-btn-sub-menu"
-          style={
-            localStorage.getItem("history-btn-sub-menu")
-              ? { display: "block" }
-              : { display: "none" }
-          }
-        >
-          <li
-            className={`nav-item ${
-              props.path === "activity" ? cx("active") : ""
-            } `}
-            id="activity-wrap"
-          >
-            <div className={cx("sub-item")}>
-              <a
-                href="/activity"
-                className={cx("sub-item-link")}
-                id="activity"
-                onClick={(event) => handleClick(event, "activity")}
-              >
-                Nhật ký hoạt động
-              </a>
-            </div>
-          </li>
-          <li
-            className={`nav-item ${
-              props.path === "balance" ? cx("active") : ""
-            } `}
-            id="balance-wrap"
-          >
-            <div className={cx("sub-item")}>
-              <a
-                href="/balance"
-                className={cx("sub-item-link")}
-                id="balance"
-                onClick={(event) => handleClick(event, "balance")}
-              >
-                Biến động số dư
-              </a>
-            </div>
-          </li>
-        </div>
-
         <li
-          className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
+          className={`nav-item ${props.path === "contact" ? cx("active") : ""} `}
           id="p-wrap"
         >
           <div className={cx("item-wrap")}>
@@ -320,7 +252,7 @@ function Nav(props) {
           </div>
         </li>
         <li
-          className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
+          className={`nav-item ${props.path === "request" ? cx("active") : ""} `}
           id="p-wrap"
         >
           <div className={cx("item-wrap")}>

@@ -18,10 +18,38 @@ body {
     font-family: 'Inter';
     font-size: 1.6rem;
     background-color: #F7F8F9;
-
+    overflow-x: hidden;
 }
 
 *{
     font-family: 'Inter';
     font-size: 1.6rem;
 }
+
+#content{
+    padding-left: 300px;
+    padding-right: 20px;
+    background-color: #F7F8F9;
+}
+
+@media only screen and (max-width: 992px) {
+    #nav {
+        display: none;
+    }
+    #content{
+        padding-left: 0 !important;
+      
+    }
+   
+}
+
+
+
+
+@media only screen and (min-width: 992px) {
+    #nav {
+        display: block !important;
+    }
+}
+
+

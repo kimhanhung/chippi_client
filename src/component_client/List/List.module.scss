@@ -1,3 +1,8 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .mobile-reponsive {
   display: none;
 }
@@ -5,7 +10,8 @@ p {
   margin-bottom: 0px;
 }
 .list {
-  margin: 41px 0px 0px 52px;
+  // margin: 41px 0px 0px 52px;
+  margin: 41px 0px 0px 0px;
   background-color: #ffff;
   border-radius: 10px;
 }
@@ -45,7 +51,6 @@ p {
   padding: 0 1.8em 0 1.8em;
   margin-top: 34px;
   // padding-bottom: 3rem;
-  
 }
 .list-produce-block {
   margin-top: 34px;
@@ -71,8 +76,8 @@ p {
 }
 .title {
   font-weight: 700;
- // font-size: 24px;
-   font-size: 1.3em;
+  // font-size: 24px;
+  font-size: 1.3em;
   line-height: 29px;
   /* identical to box height */
   letter-spacing: 0.5px;
@@ -102,9 +107,9 @@ p {
   // display: flex;
   // justify-content: space-between;
 }
-.produce-btn{
-//  display: flex;
-//  justify-content: space-between;
+.produce-btn {
+  //  display: flex;
+  //  justify-content: space-between;
 }
 .text-produce-btn {
   font-weight: 500;
@@ -115,11 +120,64 @@ p {
   // // padding: 0px 25px 0px 25px;
   // padding: 0em 2em;
 }
+
+// paging
+
+
+
+.pagination-item.active {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  border-radius: 5px;
+  padding: 8px 10px;
+  text-decoration: none;
+  background-color: var(--primary);
+  color: white;
+}
+
+.page-link-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  width: 40px;
+  margin: 0 10px;
+  border-radius: 5px;
+  padding: 8px 10px;
+  text-decoration: none;
+  color: var(--primary);
+}
+// .paging {
+//   width: 100%;
+//   margin-top: 10px;
+//   text-align: center;
+// }
+.paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+}
+.pagination-previous {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  width: 40px;
+  margin: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #ebe7e7;
+  padding: 8px 10px;
+  text-decoration: none;
+  color: var(--primary);
+}
 @media (max-width: 992px) {
   .list-button {
     display: none;
   }
-  .list{
+  .list {
     margin: 0;
   }
 }

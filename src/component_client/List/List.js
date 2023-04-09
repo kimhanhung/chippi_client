@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
+
 import Button from "../../button/btn";
+import ReactDOM from "react-dom";
+import ReactPaginate from "react-paginate";
 import classNames from "classnames/bind";
 import styles from "../List/List.module.scss";
 const cx = classNames.bind(styles);
 
-function List() { const navigate = useNavigate();
+function List() {
+  const navigate = useNavigate();
   function shortenText(text, maxLength) {
     if (text.length > maxLength) {
       return text.substring(0, maxLength - 3) + "...";
@@ -14,29 +18,52 @@ function List() { const navigate = useNavigate();
       return text;
     }
   }
+  //fetch API
+  const [products, setShowProducts] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // const [buttonStates, setButtonStates] = useState([
-  //   "btn-buy-now",
-  //   "btn-see-detail",
-  //   "btn-see-detail",
-  //   "btn-see-detail",
-  // ]);
-  // const buttonClick = (index) => {
-  //   const newButtonStates = buttonStates.map((buttonState, i) => {
-  //     // console.log(buttonState);
-  //     return i === index ? "btn-buy-now" : "btn-see-detail";
-  //   });
-
-  //   setButtonStates(newButtonStates);
-  // };
+  //
   const [activeButton, setActiveButton] = useState(1);
+  var myHeaders = new Headers();
+  myHeaders.append("Host", "chippisoft.com");
+  var formdata = new FormData();
+  formdata.append("username", "xuanninh1");
+  formdata.append("password", "xuanninh1");
+  var requestOptions = {
+    method: "POST",
+    body: formdata,
+    redirect: "follow",
+  };
+
+ 
+  //panigate
+  const handlePageClick = (selectedPage) => {
+    console.log(++selectedPage.selected);
+    setCurrentPage(selectedPage.selected);
+  };
 
   const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);
   };
+  // console.log(jsonObj);
+  const fetchData = () => {
+    fetch(
+      `https://chippisoft.com/API/Getallproducts.php?page=${currentPage}`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((data) => JSON.parse(data))
+      .then((result) => {
+        setTotalPage(result.total_pages);
+        setShowProducts(result.data);
+      })
+      .catch((error) => console.log("error", error));
+  };
+  useEffect(fetchData, [currentPage]);
   return (
     <>
-      <div className={cx("list", "desktop-reponsive")}>
+      <div id="container" className={cx("list", "desktop-reponsive")}>
         <div className={cx("list-block")}>
           <div className={cx("list-button")}>
             <div className={cx("btn")}>
@@ -106,310 +133,94 @@ function List() { const navigate = useNavigate();
               </Button>
             </div>
           </div>
+          <div></div>
           <Row sm={2} xl={3} xxl={4} className={cx("list-produce")}>
-            <Col className={cx("list-produce-block")}>
-              <div className={cx("produce")}>
-                <div className={cx("produce-element")}>
-                  <img
-                    className={cx("img-produce")}
-                    src={require("../../assets/img_produce.jpg")}
-                  />
-                  <div className={cx("infor")}>
-                    <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("price-bought-block")}>
-                      <label className={cx("price")}>
-                        36000 <label className={cx("price")}>Đ</label>
-                      </label>
-                      <label className={cx("bought")}>
-                        {" "}
-                        Đã mua <label className="bought">25</label>{" "}
-                      </label>
-                    </div>
+            {products.map((product) => {
+              return (
+                <Col className={cx("list-produce-block")} key={product.id}>
+                  <div className={cx("produce")}>
+                    <div className={cx("produce-element")}>
+                      <img
+                        className={cx("img-produce")}
+                        src={require("../../assets/img_produce.jpg")}
+                      />
+                      <div className={cx("infor")}>
+                        <p className={cx("title")}>
+                          {" "}
+                          {shortenText(JSON.stringify(product.name), 15)}
+                        </p>
+                        <div className={cx("price-bought-block")}>
+                          <label className={cx("price")}>
+                            {product.price}{" "}
+                            <label className={cx("price")}>Đ</label>
+                          </label>
+                          <label className={cx("bought")}>
+                            {" "}
+                            Đã mua: <label className="bought">25</label>{" "}
+                          </label>
+                        </div>
 
-                    <p className={cx("des")}>
-                      Mô tả:
-                      {shortenText(
-                        "Công cụ hỗ trợ trong việc chỉnh sửa ảnh, phục vụ nhu cầu của mọi người, đặc biệt là những người làm trong ngành thiết kế",
-                        60
-                      )}
-                    </p>
-                  </div>
-                  <div className={cx("block-btn")}>
-                    <Row>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-see-detail")}
-                          onClick={()=> navigate("/detail")}
-                          >
-                            <p className={cx("text-produce-btn")}>
-                              Xem chi tiết
-                            </p>
-                          </Button>
-                        </div>
-                      </Col>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-buy-now")}>
-                            <p className={cx("text-produce-btn")}>Mua ngay</p>
-                          </Button>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col className={cx("list-produce-block")}>
-              <div className={cx("produce")}>
-                <div className={cx("produce-element")}>
-                  <img
-                    className={cx("img-produce")}
-                    src={require("../../assets/img_produce.jpg")}
-                  />
-                  <div className={cx("infor")}>
-                    <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("price-bought-block")}>
-                      <label className={cx("price")}>
-                        36000 <label className={cx("price")}>Đ</label>
-                      </label>
-                      <label className={cx("bought")}>
-                        {" "}
-                        Đã mua <label className="bought">25</label>{" "}
-                      </label>
+                        <p className={cx("des")}>
+                          Mô tả:
+                          {shortenText(JSON.stringify(product.content), 30)}
+                        </p>
+                      </div>
+                      <div className={cx("block-btn")}>
+                        <Row>
+                          <Col>
+                            <div className={cx("produce-btn")}>
+                              <Button
+                                className={cx("btn-see-detail")}
+                                onClick={() => navigate("/detail")}
+                              >
+                                <p className={cx("text-produce-btn")}>
+                                  Xem chi tiết
+                                </p>
+                              </Button>
+                            </div>
+                          </Col>
+                          <Col>
+                            <div className={cx("produce-btn")}>
+                              <Button className={cx("btn-buy-now")}>
+                                <p className={cx("text-produce-btn")}>
+                                  Mua ngay
+                                </p>
+                              </Button>
+                            </div>
+                          </Col>
+                        </Row>
+                      </div>
                     </div>
-
-                    <p className={cx("des")}>
-                      Mô tả:
-                      {shortenText(
-                        "Công cụ hỗ trợ trong việc chỉnh sửa ảnh, phục vụ nhu cầu của mọi người, đặc biệt là những người làm trong ngành thiết kế",
-                        60
-                      )}
-                    </p>
                   </div>
-                  <div className={cx("block-btn")}>
-                    <Row>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-see-detail")}>
-                            <p className={cx("text-produce-btn")}>
-                              Xem chi tiết
-                            </p>
-                          </Button>
-                        </div>
-                      </Col>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-buy-now")}>
-                            <p className={cx("text-produce-btn")}>Mua ngay</p>
-                          </Button>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col className={cx("list-produce-block")}>
-              <div className={cx("produce")}>
-                <div className={cx("produce-element")}>
-                  <img
-                    className={cx("img-produce")}
-                    src={require("../../assets/img_produce.jpg")}
-                  />
-                  <div className={cx("infor")}>
-                    <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("price-bought-block")}>
-                      <label className={cx("price")}>
-                        36000 <label className={cx("price")}>Đ</label>
-                      </label>
-                      <label className={cx("bought")}>
-                        {" "}
-                        Đã mua <label className="bought">25</label>{" "}
-                      </label>
-                    </div>
-
-                    <p className={cx("des")}>
-                      Mô tả:
-                      {shortenText(
-                        "Công cụ hỗ trợ trong việc chỉnh sửa ảnh, phục vụ nhu cầu của mọi người, đặc biệt là những người làm trong ngành thiết kế",
-                        60
-                      )}
-                    </p>
-                  </div>
-                  <div className={cx("block-btn")}>
-                    <Row>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-see-detail")}>
-                            <p className={cx("text-produce-btn")}>
-                              Xem chi tiết
-                            </p>
-                          </Button>
-                        </div>
-                      </Col>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-buy-now")}>
-                            <p className={cx("text-produce-btn")}>Mua ngay</p>
-                          </Button>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col className={cx("list-produce-block")}>
-              <div className={cx("produce")}>
-                <div className={cx("produce-element")}>
-                  <img
-                    className={cx("img-produce")}
-                    src={require("../../assets/img_produce.jpg")}
-                  />
-                  <div className={cx("infor")}>
-                    <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("price-bought-block")}>
-                      <label className={cx("price")}>
-                        36000 <label className={cx("price")}>Đ</label>
-                      </label>
-                      <label className={cx("bought")}>
-                        {" "}
-                        Đã mua <label className="bought">25</label>{" "}
-                      </label>
-                    </div>
-
-                    <p className={cx("des")}>
-                      Mô tả:
-                      {shortenText(
-                        "Công cụ hỗ trợ trong việc chỉnh sửa ảnh, phục vụ nhu cầu của mọi người, đặc biệt là những người làm trong ngành thiết kế",
-                        60
-                      )}
-                    </p>
-                  </div>
-                  <div className={cx("block-btn")}>
-                    <Row>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-see-detail")}>
-                            <p className={cx("text-produce-btn")}>
-                              Xem chi tiết
-                            </p>
-                          </Button>
-                        </div>
-                      </Col>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-buy-now")}>
-                            <p className={cx("text-produce-btn")}>Mua ngay</p>
-                          </Button>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col className={cx("list-produce-block")}>
-              <div className={cx("produce")}>
-                <div className={cx("produce-element")}>
-                  <img
-                    className={cx("img-produce")}
-                    src={require("../../assets/img_produce.jpg")}
-                  />
-                  <div className={cx("infor")}>
-                    <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("price-bought-block")}>
-                      <label className={cx("price")}>
-                        36000 <label className={cx("price")}>Đ</label>
-                      </label>
-                      <label className={cx("bought")}>
-                        {" "}
-                        Đã mua <label className="bought">25</label>{" "}
-                      </label>
-                    </div>
-
-                    <p className={cx("des")}>
-                      Mô tả:
-                      {shortenText(
-                        "Công cụ hỗ trợ trong việc chỉnh sửa ảnh, phục vụ nhu cầu của mọi người, đặc biệt là những người làm trong ngành thiết kế",
-                        60
-                      )}
-                    </p>
-                  </div>
-                  <div className={cx("block-btn")}>
-                    <Row>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-see-detail")}>
-                            <p className={cx("text-produce-btn")}>
-                              Xem chi tiết
-                            </p>
-                          </Button>
-                        </div>
-                      </Col>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-buy-now")}>
-                            <p className={cx("text-produce-btn")}>Mua ngay</p>
-                          </Button>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col className={cx("list-produce-block")}>
-              <div className={cx("produce")}>
-                <div className={cx("produce-element")}>
-                  <img
-                    className={cx("img-produce")}
-                    src={require("../../assets/img_produce.jpg")}
-                  />
-                  <div className={cx("infor")}>
-                    <p className={cx("title")}>ADOBE PHOTOSHOP</p>
-                    <div className={cx("price-bought-block")}>
-                      <label className={cx("price")}>
-                        36000 <label className={cx("price")}>Đ</label>
-                      </label>
-                      <label className={cx("bought")}>
-                        {" "}
-                        Đã mua <label className="bought">25</label>{" "}
-                      </label>
-                    </div>
-
-                    <p className={cx("des")}>
-                      Mô tả:
-                      {shortenText(
-                        "Công cụ hỗ trợ trong việc chỉnh sửa ảnh, phục vụ nhu cầu của mọi người, đặc biệt là những người làm trong ngành thiết kế",
-                        60
-                      )}
-                    </p>
-                  </div>
-                  <div className={cx("block-btn")}>
-                    <Row>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-see-detail")}>
-                            <p className={cx("text-produce-btn")}>
-                              Xem chi tiết
-                            </p>
-                          </Button>
-                        </div>
-                      </Col>
-                      <Col>
-                        <div className={cx("produce-btn")}>
-                          <Button className={cx("btn-buy-now")}>
-                            <p className={cx("text-produce-btn")}>Mua ngay</p>
-                          </Button>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-              </div>
-            </Col>
+                  {/* <div> {product.name}</div> */}
+                </Col>
+              );
+            })}
           </Row>
+        </div>
+        <div className={cx("paging")}>
+          <ReactPaginate
+            previousLabel={"<"}
+            nextLabel={">"}
+            pageCount={totalPage}
+            onPageChange={handlePageClick}
+            containerClassName={"pagination"}
+            nextClassName={"page-item"}
+            previousLinkClassName={cx(
+              "pagination-previous",
+
+              " page-link"
+            )}
+            pageClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            previousClassName={"page-item"}
+            nextLinkClassName={cx("page-link","pagination-previous")}
+            breakLabel="..."
+            breakClassName="page-item"
+            breakLinkClassName={"page-link"}
+            activeClassName={"active"}
+            renderOnZeroPageCount={null}
+          />
         </div>
       </div>
     </>

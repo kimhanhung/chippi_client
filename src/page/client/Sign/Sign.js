@@ -1,5 +1,6 @@
 import Sign_up from "../../../component_client/Sign/Sign_up";
 import Sign_in from "../../../component_client/Sign/Sign_in";
+import { useNavigate } from "react-router-dom";
 // import Sign_in from "../../../component_client/Sign/Sign_up";
 // import Sign_up from "../../../component_client/Sign/Sign_up";
 import { useState, useEffect } from "react";
@@ -12,6 +13,7 @@ import styles from "../Sign/Sign.module.scss";
 import { type } from "@testing-library/user-event/dist/type";
 const cx = classNames.bind(styles);
 function Sign_client() {
+    const navigate = useNavigate();
     const [showLogIn, setShowLogIn] = useState(true);
     const [showSignUp, setShowSignUp] = useState(false);
     const handleShowLogIn = (buttonId) => {
@@ -55,6 +57,9 @@ function Sign_client() {
                 onClick ={()=>handleShowLogIn(2)}
                 >ĐĂNG KÝ</div>
               </div>
+              <p className={cx("free-log-in")}
+              onClick={()=> navigate("/")}
+              >Tiếp tục mà không cần tài khoản</p>
              { showLogIn && <Sign_in/>}
              {showSignUp && <Sign_up/>}
               {/* <div className={cx("sign-in-block")}>

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 // import { mode } from "crypto-js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
+// import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
 import Header from "./component_client/Header/header";
 import Button from "./button/btn";
 // import Dashboard from "./page/server/dashboard";
@@ -16,6 +17,7 @@ import Sign_client from "./page/client/Sign/Sign";
 import Pay_page from "./page/client/pay/Pay_page";
 import Error_not_found from "./page/client/Error/Error404";
 import ForgotPassNext from "./component_client/Sign/ForgotPassNext";
+import OderHistory_page from "./page/client/Order_history/OrderHistory";
 import {  Route, Routes } from "react-router-dom";
 import Intro from "./component_client/Intro";
 import Account_page from "./page/client/Account/user_page";
@@ -40,12 +42,14 @@ function App() {
        
         <Route path="/" element={<Home />} /> 
         <Route path="/list" element={<List_page/>} />
-        <Route path="/detail" element={<Detail_page/>} />
+        <Route path="/list/:id" element={<Detail_page/>} />
+        {/* <Route path="/detail" element={<Detail_page/>} /> */}
         <Route path="/listPost" element={<Post_page/>} />
         <Route path="/post" element={<Post_page_detail/>} />
         <Route path="/pay" element={<Pay_page/>} />
         <Route path="/contact" element={<Contact_page/>} />
         <Route path="/sign" element={<Sign_client/>} />
+        <Route path="/order" element={<OderHistory_page/>} />
         <Route path="/forgot" element={<ForgotPass/>} />
         <Route path="/forgotNext" element={<ForgotPassNext/>} />
         <Route path="/intro" element={<Intro/>} />
