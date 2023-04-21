@@ -17,7 +17,7 @@ function Post_page_detail() {
 
   return (
     <>
-    <Row><Header /></Row>
+    <Row  style={{ padding: "0" }}><Header /></Row>
       <Row style={{ padding: "0" }}>
         <div className={cx("col-custom")}>
           <Nav path={router} />

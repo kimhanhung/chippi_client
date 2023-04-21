@@ -1,77 +1,24 @@
 import { useState, useEffect, useRef } from "react";
-// import Captcha from "../captcha/Captcha";
+import ReCAPTCHA from "react-google-recaptcha";
 import Button from "../../button/btn";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import { Navigate, useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "../Sign/Sign_in.module.scss";
-import { type } from "@testing-library/user-event/dist/type";
 const cx = classNames.bind(styles);
-
+const grecaptchaObject = window.grecaptcha;
 function Sign_in() {
   //tạo captcha
   const navigate = useNavigate();
   const canvasRef = useRef(null);
-  let captcha;
-  const [currentCaptcha, setCurrentCaptcha] = useState("");
-  const [captchaValue, setCaptchaValue] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
 
-  function generateCaptcha() {
-    const chars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let captcha = "";
-    for (let i = 0; i < 6; i++) {
-      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return captcha;
-  }
-  useEffect(() => {
-    drawCaptcha();
-  }, []);
-  const drawCaptcha = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    const captcha = generateCaptcha();
-
-    // Draw background
-    ctx.fillStyle = "#f2f2f2";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw characters
-    ctx.font = "bold 24px sans-serif";
-    ctx.fillStyle = "#333";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    let x = canvas.width / 15;
-    let y = canvas.height / 2;
-    for (let i = 0; i < captcha.length; i++) {
-      x += canvas.width / 8;
-      ctx.fillText(captcha.charAt(i), x, y);
-    }
-
-    // Draw noise
-    for (let i = 0; i < 20; i++) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
-      const size = Math.random() * 2;
-      ctx.fillRect(x, y, size, size);
-    }
-
-    setCurrentCaptcha(captcha);
+  const handleRecaptchaChange = (token) => {
+    setRecaptchaToken(token);
   };
+
   const [user, setUser] = useState({});
   const handleSubmit = (e) => {
     //kiểm tra captcha
-    e.preventDefault();
-    if (captchaValue === currentCaptcha) {
-      // alert("Captcha chính xác!");
-      captcha = true;
-    } else {
-      // alert("Nhập sai captcha!");
-      captcha = false;
-      // drawCaptcha();
-    }
     // fetch API
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "PHPSESSID=4e6806172077e630b59a5ca0d5982aef");
@@ -87,29 +34,30 @@ function Sign_in() {
       body: formdata,
       redirect: "follow",
     };
-    if (captcha == false) {
-      alert("bạn đã sai captcha");
-      drawCaptcha();
+    if (!recaptchaToken) {
+      alert("Vui lòng kiểm tra captcha");
+      // drawCaptcha();
     } else {
       fetch("https://chippisoft.com/API/API.php", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          console.log(typeof((result)));
+          console.log(typeof result);
           const jsonObj = JSON.parse(result);
-          console.log(jsonObj.status );
-          if(jsonObj.status ==="success") alert("đăng nhập thành công")
-          else alert("đăng nhập thất bại")
-    
+          console.log(jsonObj.status);
+          localStorage.setItem("jwt", jsonObj.jwt);
+          console.log(localStorage.getItem("jwt"));
+          if (jsonObj.status === "success") {
+            alert("đăng nhập thành công");
+            navigate("/");
+          } else alert("đăng nhập thất bại");
         })
         .catch((error) => console.log("error", error));
     }
-
   };
-
 
   return (
     <div className={cx("sign-in-block")}>
-      <div className={cx("input-block")} >
+      <div className={cx("input-block")}>
         <div className={cx("user-name")}>
           <p className={cx("label-user")}>Tên tài khoản</p> <br />
           <input
@@ -137,33 +85,20 @@ function Sign_in() {
           <label className={cx("label-check-book")}>ghi nhớ mật khẩu</label>
         </div>
       </div>
-     
+
       <div className={cx("btn")}>
-        {/* <Captcha /> */}
-        {/* capcha */}
         <div>
-          <canvas ref={canvasRef} id="captcha" width={200} height={50} />
-          <br />
-          <div className={cx("captcha-input")}>
-            <input
-              className={cx("input")}
-              type="text"
-              id="captcha-input"
-              value={captchaValue}
-              onChange={(e) => setCaptchaValue(e.target.value)}
-            />
-            <Button
-              className={cx("header-btn-global refresh-btn")}
-              // type="submit"
-              // id="refresh-btn"
-              onClick={drawCaptcha}
-            >
-              <FontAwesomeIcon
-                className={cx("icon-reload")}
-                icon={faArrowsRotate}
-              />
-            </Button>
-          </div>
+          {/* <div>123</div> */}
+          <ReCAPTCHA
+            sitekey="6LeMHYglAAAAAMnHJUtzQ91O7lO5Av0Ss_4bRjbf"
+            onChange={handleRecaptchaChange}
+            grecaptcha={grecaptchaObject}
+          />
+          {/* {recaptchaToken && (
+        <div>
+          Đã xác minh reCAPTCHA với token: {recaptchaToken}
+        </div>
+      )} */}
         </div>
         <div className={cx("btn-block-log-in")}>
           <Button className={cx("tool-btn ")} onClick={handleSubmit}>
@@ -171,14 +106,17 @@ function Sign_in() {
           </Button>
         </div>
       </div>
-      <div className={cx("forgot-pass")}
-      // onClick={()=> navigate("/forgot")}
+      <div
+        className={cx("forgot-pass")}
+        // onClick={()=> navigate("/forgot")}
       >
-        <a 
-        href="https://chippisoft.com/Pages/Forgotpass.php"
-        className={cx("link-to-forgot")} 
-        > <p className={cx("text-forgot-pass")}>Quên mật khẩu?</p></a>
-       
+        <a
+          href="https://chippisoft.com/Pages/Forgotpass.php"
+          className={cx("link-to-forgot")}
+        >
+          {" "}
+          <p className={cx("text-forgot-pass")}>Quên mật khẩu?</p>
+        </a>
       </div>
     </div>
   );

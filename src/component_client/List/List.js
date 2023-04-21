@@ -10,6 +10,7 @@ import styles from "../List/List.module.scss";
 const cx = classNames.bind(styles);
 
 function List() {
+  console.log(localStorage.getItem("jwt"));
   const navigate = useNavigate();
   function shortenText(text, maxLength) {
     if (text.length > maxLength) {
@@ -21,22 +22,24 @@ function List() {
   //fetch API
   const [products, setShowProducts] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
+  const [status, setStatus] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   //
   const [activeButton, setActiveButton] = useState(1);
   var myHeaders = new Headers();
   myHeaders.append("Host", "chippisoft.com");
+
+  myHeaders.append("Authorization", localStorage.getItem("jwt"));
   var formdata = new FormData();
-  formdata.append("username", "xuanninh1");
-  formdata.append("password", "xuanninh1");
+  // formdata.append("username", "xuanninh1");
+  // formdata.append("password", "xuanninh1");
   var requestOptions = {
-    method: "POST",
-    body: formdata,
+    method: "GET",
+    headers: myHeaders,
     redirect: "follow",
   };
 
- 
   //panigate
   const handlePageClick = (selectedPage) => {
     console.log(++selectedPage.selected);
@@ -53,14 +56,23 @@ function List() {
       requestOptions
     )
       .then((response) => response.text())
-      .then((data) => JSON.parse(data))
+      // .then((data) => {
+      //   //  console.log("day la data")
+      //   console.log(data);
+      //   JSON.parse(data);
+      // })
       .then((result) => {
-        setTotalPage(result.total_pages);
-        setShowProducts(result.data);
+        const jsonObj = JSON.parse(result);
+        console.log(jsonObj.status);
+        setStatus(jsonObj.status);
+        // setTotalPage(result.total_pages);
+        setTotalPage(jsonObj.total_pages);
+        setShowProducts(jsonObj.data);
       })
       .catch((error) => console.log("error", error));
   };
   useEffect(fetchData, [currentPage]);
+
   return (
     <>
       <div id="container" className={cx("list", "desktop-reponsive")}>
@@ -133,70 +145,73 @@ function List() {
               </Button>
             </div>
           </div>
-          <div></div>
-          <Row sm={2} xl={3} xxl={4} className={cx("list-produce")}>
-            {products.map((product) => {
-              return (
-                <Col className={cx("list-produce-block")} key={product.id}>
-                  <div className={cx("produce")}>
-                    <div className={cx("produce-element")}>
-                      <img
-                        className={cx("img-produce")}
-                        src={require("../../assets/img_produce.jpg")}
-                      />
-                      <div className={cx("infor")}>
-                        <p className={cx("title")}>
-                          {" "}
-                          {shortenText(JSON.stringify(product.name), 15)}
-                        </p>
-                        <div className={cx("price-bought-block")}>
-                          <label className={cx("price")}>
-                            {product.price}{" "}
-                            <label className={cx("price")}>Đ</label>
-                          </label>
-                          <label className={cx("bought")}>
+          {!products ? (
+            <div>Vui lòng đăng nhập để xem sản phẩm.</div>
+          ) : (
+            <Row xs={1} sm={2} xl={3} xxl={4} className={cx("list-produce")}>
+              {products.map((product) => {
+                return (
+                  <Col className={cx("list-produce-block")} key={product.id}>
+                    <div className={cx("produce")}>
+                      <div className={cx("produce-element")}>
+                        <img
+                          className={cx("img-produce")}
+                          src={require("../../assets/img_produce.jpg")}
+                        />
+                        <div className={cx("infor")}>
+                          <p className={cx("title")}>
                             {" "}
-                            Đã mua: <label className="bought">25</label>{" "}
-                          </label>
-                        </div>
+                            {shortenText(JSON.stringify(product.name), 15)}
+                          </p>
+                          <div className={cx("price-bought-block")}>
+                            <label className={cx("price")}>
+                              {product.price}{" "}
+                              <label className={cx("price")}>Đ</label>
+                            </label>
+                            <label className={cx("bought")}>
+                              {" "}
+                              Đã mua: <label className="bought">25</label>{" "}
+                            </label>
+                          </div>
 
-                        <p className={cx("des")}>
-                          Mô tả:
-                          {shortenText(JSON.stringify(product.content), 30)}
-                        </p>
-                      </div>
-                      <div className={cx("block-btn")}>
-                        <Row>
-                          <Col>
-                            <div className={cx("produce-btn")}>
-                              <Button
-                                className={cx("btn-see-detail")}
-                                onClick={() => navigate("/detail")}
-                              >
-                                <p className={cx("text-produce-btn")}>
-                                  Xem chi tiết
-                                </p>
-                              </Button>
-                            </div>
-                          </Col>
-                          <Col>
-                            <div className={cx("produce-btn")}>
-                              <Button className={cx("btn-buy-now")}>
-                                <p className={cx("text-produce-btn")}>
-                                  Mua ngay
-                                </p>
-                              </Button>
-                            </div>
-                          </Col>
-                        </Row>
+                          <p className={cx("des")}>
+                            Mô tả:
+                            {shortenText(JSON.stringify(product.content), 30)}
+                          </p>
+                        </div>
+                        <div className={cx("block-btn")}>
+                          <Row>
+                            <Col>
+                              <div className={cx("produce-btn")}>
+                                <Button
+                                  className={cx("btn-see-detail")}
+                                  onClick={() => navigate("/detail")}
+                                >
+                                  <p className={cx("text-produce-btn")}>
+                                    Xem chi tiết
+                                  </p>
+                                </Button>
+                              </div>
+                            </Col>
+                            <Col>
+                              <div className={cx("produce-btn")}>
+                                <Button className={cx("btn-buy-now")}>
+                                  <p className={cx("text-produce-btn")}>
+                                    Mua ngay
+                                  </p>
+                                </Button>
+                              </div>
+                            </Col>
+                          </Row>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {/* <div> {product.name}</div> */}
-                </Col>
-              );
-            })}
-          </Row>
+                    {/* <div> {product.name}</div> */}
+                  </Col>
+                );
+              })}
+            </Row>
+          )}
         </div>
         <div className={cx("paging")}>
           <ReactPaginate
@@ -204,21 +219,17 @@ function List() {
             nextLabel={">"}
             pageCount={totalPage}
             onPageChange={handlePageClick}
-            containerClassName={"pagination"}
+            containerClassName={cx("pagination")}
             nextClassName={"page-item"}
-            previousLinkClassName={cx(
-              "pagination-previous",
-
-              " page-link"
-            )}
-            pageClassName={"page-item"}
-            pageLinkClassName={"page-link"}
             previousClassName={"page-item"}
-            nextLinkClassName={cx("page-link","pagination-previous")}
+            previousLinkClassName={cx("page-link", "page-link-item")}
+            pageClassName={cx("page-item")}
+            pageLinkClassName={cx("page-link", "page-link-item")}
+            nextLinkClassName={cx("page-link", "page-link-item")}
             breakLabel="..."
             breakClassName="page-item"
             breakLinkClassName={"page-link"}
-            activeClassName={"active"}
+            activeClassName={cx("active", "page-link-item-selected")}
             renderOnZeroPageCount={null}
           />
         </div>

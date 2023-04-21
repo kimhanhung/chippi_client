@@ -17,7 +17,7 @@ function Pay_page() {
   return (
     <>
     <Row><Header /></Row>
-      <Row style={{ padding: "0" }}>
+      <Row style={{ padding: "0"}}>
         <div className={cx("col-custom")}>
           <Nav path={router} />
         </div>

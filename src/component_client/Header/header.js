@@ -33,7 +33,9 @@ const Header = () => {
       return text;
     }
   }
-
+  const handleLogIn = () => {
+    localStorage.setItem("jwt", null);
+  };
   const _handleClick = () => {
     const nav = document.getElementById("nav");
     nav.style.display = "block";
@@ -188,10 +190,21 @@ const Header = () => {
                       </li>
                       <li
                         className={cx("hower-li")}
-                        onClick={() => navigate("/sign")}
+                        onClick={() => {
+                          localStorage.setItem("jwt","");
+                          navigate("/sign");
+                        }}
                       >
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                        <label className={cx("menu-text")}> Đăng xuất </label>
+                        <label
+                          className={cx("menu-text")}
+                          // onClick={handleLogIn}
+                        >
+                          {" "}
+                          {localStorage.getItem("jwt")=== "" ? <p>đăng nhập</p> : <>đăng xuất</>}
+                          {/* Đăng xuất */}
+                          {" "}
+                        </label>
                       </li>
                     </ul>
                   </div>
