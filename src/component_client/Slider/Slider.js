@@ -35,7 +35,6 @@ function Slider() {
         </div>
       </div>
 
-  
       {/* <img className={cx("img")} src={require("../../assets/slider.png")} /> */}
     </div>
   );

@@ -89,22 +89,6 @@ const Header = () => {
             onClick={_handleClick}
           />
         </Col>
-        {/* <Col sm={6} xs={8}>
-          <div className={cx("header-btn")}>
-            <Button className={cx("tool-btn ")}>
-              <p className={cx("text")}>
-                <FontAwesomeIcon className={cx("icon-btn")} icon={faBolt} />{" "}
-                CODE TOOL THEO YÊU CẦU
-              </p>
-            </Button>
-            <Button className={cx("recharge-btn header-btn-global")}>
-              <p className={cx("text")}>
-                <FontAwesomeIcon className={cx("icon-btn")} icon={faBolt} />
-                NẠP TIỀN
-              </p>
-            </Button>
-          </div>
-        </Col> */}
         <Col sm={10} xs={10} style={{ padding: "0px" }}>
           <div className={cx("header-icon")}>
             <div className={cx("input-block")} id="search-block">

@@ -91,9 +91,9 @@ function Sign_up() {
           const jsonObj = JSON.parse(result);
           console.log(jsonObj.status);
           if (jsonObj.status === "success") {
-            alert("đăng ký thành công");
-            navigate("/sign")
-          } else alert("đăng ký thất bại: " + jsonObj.data);
+            console.log("đăng ký thành công");
+            window.location.reload();
+          } else console.log("đăng ký thất bại: " + jsonObj.data);
         })
         .catch((error) => console.log("error", error));
     }

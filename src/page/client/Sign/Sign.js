@@ -29,10 +29,7 @@ function Sign_client() {
     };
 
     const [activeButton, setActiveButton] = useState(1);
-
-    // const handleButtonClick = (buttonId) => {
-    //   setActiveButton(buttonId);
-    // };
+    localStorage.setItem("jwt","")
   return (
     <div className={cx("sign")}>
       <div className={cx("sign-block")}>
@@ -62,34 +59,6 @@ function Sign_client() {
               >Tiếp tục mà không cần tài khoản</p>
              { showLogIn && <Sign_in/>}
              {showSignUp && <Sign_up/>}
-              {/* <div className={cx("sign-in-block")}>
-                <div className={cx("input-block")}>
-                  <div className={cx("user-name")}>
-                    <p className={cx("label-user")}>tên tài khoản</p> <br />
-                    <input className={cx("input")} placeholder="tài khoản" />
-                  </div>
-                  <div className={cx("user-password")}>
-                    <p className={cx("label-user")}>mật khẩu</p> <br />
-                    <input
-                      className={cx("input")}
-                      type="password"
-                      placeholder="mật khẩu"
-                    />
-                  </div>
-                  <div className={cx("check-box ")}>
-                    <input className={cx("input-check-box")} type="checkbox" />
-                    <label className={cx("label-check-book")}>
-                      ghi nhớ mật khẩu
-                    </label>
-                  </div>
-                </div>
-                <div className={cx("btn")}>
-                  <Captcha />
-                </div>
-                <div className={cx("forgot-pass")}>
-                  <p className={cx("text-forgot-pass")}>Quên mật khẩu?</p>
-                </div>
-              </div> */}
               
             </div>
           </Col>
