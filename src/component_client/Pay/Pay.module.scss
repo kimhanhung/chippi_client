@@ -75,7 +75,9 @@
   .block{
     margin: 0;
   }
-
+  .account-infor{
+    margin-bottom: 10px;
+  }
 }
 @media (max-width: 576px) {
   .block{
@@ -85,4 +87,5 @@
     margin: 0;
     font-size: 10px;
   }
+
 }

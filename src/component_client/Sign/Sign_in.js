@@ -25,9 +25,8 @@ function Sign_in() {
     myHeaders.append("Host", "chippisoft.com");
     var formdata = new FormData();
     formdata.append("username", user.username);
-    // formdata.append("email", user.email);
     formdata.append("password", user.password);
-
+    console.log(user);
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -36,7 +35,6 @@ function Sign_in() {
     };
     if (!recaptchaToken) {
       alert("Vui lòng kiểm tra captcha");
-      // drawCaptcha();
     } else {
       fetch("https://chippisoft.com/API/API.php", requestOptions)
         .then((response) => response.text())
@@ -48,8 +46,14 @@ function Sign_in() {
           console.log(localStorage.getItem("jwt"));
           if (jsonObj.status === "success") {
             alert("đăng nhập thành công");
+            localStorage.setItem("isAdmin", jsonObj.isAdmin);
             navigate("/");
-          } else alert("đăng nhập thất bại");
+          } 
+          if (jsonObj.status === "failed") {
+            alert("đăng nhập thất bại");
+            navigate("/");
+          } 
+          //else alert("đăng nhập thất bại");
         })
         .catch((error) => console.log("error", error));
     }
@@ -63,9 +67,9 @@ function Sign_in() {
           <input
             className={cx("input")}
             type="text"
-            id="email"
-            name="email"
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            id="username"
+            name="username"
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
             placeholder="tài khoản"
           />
         </div>

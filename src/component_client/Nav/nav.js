@@ -66,7 +66,8 @@ function Nav(props) {
       }
     }
   };
-
+  var isAdmin = localStorage.getItem("isAdmin");
+console.log(isAdmin);
   const _handleClose = () => {
     document.getElementById("nav").style.display = "none";
   };
@@ -103,9 +104,7 @@ function Nav(props) {
   return (
     <nav className={cx("wrapper")} id="nav">
       <div className={cx("nav-top")}>
-        <div className={cx("nav-chippi")}
-        onClick={()=>navigate("/")}
-        >
+        <div className={cx("nav-chippi")} onClick={() => navigate("/")}>
           <div className={cx("nav-top-logo")}>
             <img
               className={cx("nav-top-logo-img")}
@@ -124,16 +123,12 @@ function Nav(props) {
       </div>
 
       <div className={cx("nav-list")}>
-        <li className="nav-item" id="pd-wrap"
-        
-        >
-          <div className={cx("item-wrap", "nav-item-down")}
-          //  onClick={()=> navigate("/list")}
+        <li className="nav-item" id="pd-wrap">
+          <div
+            className={cx("item-wrap", "nav-item-down")}
+            //  onClick={()=> navigate("/list")}
           >
-            <div
-              className={cx("nav-item-left")}
-             
-            >
+            <div className={cx("nav-item-left")}>
               <FontAwesomeIcon
                 icon={faBarsStaggered}
                 className={cx("nav-icon")}
@@ -168,13 +163,12 @@ function Nav(props) {
           }
         >
           <li
-            className={`nav-item ${
-              props.path === "list" ? cx("active") : ""
-            } `}
+            className={`nav-item ${props.path === "list" ? cx("active") : ""} `}
             id="list-wrap"
           >
-            <div className={cx("sub-item")}
-            onClick={(event) => handleClick(event, "list")}
+            <div
+              className={cx("sub-item")}
+              onClick={(event) => handleClick(event, "list")}
             >
               <a
                 href="/list"
@@ -182,7 +176,7 @@ function Nav(props) {
                 id="list"
                 // onClick={(event) => handleClick(event, "product/list")}
               >
-               Chuyên mục
+                Chuyên mục
               </a>
             </div>
           </li>
@@ -192,12 +186,14 @@ function Nav(props) {
             } `}
             id="order-wrap"
           >
-            <div className={cx("sub-item")}onClick={(event) => handleClick(event, "order")}>
+            <div
+              className={cx("sub-item")}
+              onClick={(event) => handleClick(event, "order")}
+            >
               <a
                 href="/product/order"
                 className={cx("sub-item-link")}
                 id="order"
-                
               >
                 Đơn hàng
               </a>
@@ -220,12 +216,15 @@ function Nav(props) {
             </a>
           </div>
         </li>
-        <li 
-         className={`nav-item ${props.path === "listPost" ? cx("active") : ""} `}
-        id="ht-wrap">
-          <div className={cx("item-wrap", "nav-item-down")}
-          
-          onClick={()=> navigate("/listPost")}
+        <li
+          className={`nav-item ${
+            props.path === "listPost" ? cx("active") : ""
+          } `}
+          id="ht-wrap"
+        >
+          <div
+            className={cx("item-wrap", "nav-item-down")}
+            onClick={() => navigate("/listPost")}
           >
             <div className={cx("nav-item-left")}>
               <FontAwesomeIcon icon={faClipboard} className={cx("nav-icon")} />
@@ -236,7 +235,9 @@ function Nav(props) {
           </div>
         </li>
         <li
-          className={`nav-item ${props.path === "contact" ? cx("active") : ""} `}
+          className={`nav-item ${
+            props.path === "contact" ? cx("active") : ""
+          } `}
           id="p-wrap"
         >
           <div className={cx("item-wrap")}>
@@ -252,7 +253,9 @@ function Nav(props) {
           </div>
         </li>
         <li
-          className={`nav-item ${props.path === "request" ? cx("active") : ""} `}
+          className={`nav-item ${
+            props.path === "request" ? cx("active") : ""
+          } `}
           id="p-wrap"
         >
           <div className={cx("item-wrap")}>
@@ -270,6 +273,26 @@ function Nav(props) {
             </a>
           </div>
         </li>
+         {isAdmin ==="1" &&   <li
+
+          id="p-wrap"
+        >
+          <div className={cx("item-wrap")}>
+            <FontAwesomeIcon
+              icon={faCodePullRequest}
+              className={cx("nav-icon")}
+            />
+            <a
+              href="/pay"
+              className={cx("nav-item-name")}
+              id="p"
+              onClick={(event) => handleClick(event, "")}
+            >
+             ADMIN
+            </a>
+          </div>
+        </li>}
+      
       </div>
     </nav>
   );
